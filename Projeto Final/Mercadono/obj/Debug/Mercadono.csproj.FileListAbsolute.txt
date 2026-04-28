@@ -1,0 +1,13 @@
+C:\Users\2224096\OneDrive - Escola Digital\Documentos\GitHub\trabalho-escoladigital\Projeto Final\Mercadono\obj\Debug\Mercadono.csproj.AssemblyReference.cache
+C:\Users\2224096\OneDrive - Escola Digital\Documentos\GitHub\trabalho-escoladigital\Projeto Final\Mercadono\obj\Debug\Mercadono.Properties.Resources.resources
+C:\Users\2224096\OneDrive - Escola Digital\Documentos\GitHub\trabalho-escoladigital\Projeto Final\Mercadono\obj\Debug\Mercadono.csproj.GenerateResource.cache
+C:\Users\2224096\OneDrive - Escola Digital\Documentos\GitHub\trabalho-escoladigital\Projeto Final\Mercadono\obj\Debug\Mercadono.csproj.CoreCompileInputs.cache
+C:\Users\2224096\OneDrive - Escola Digital\Documentos\GitHub\trabalho-escoladigital\Projeto Final\Mercadono\obj\Debug\Mercadono.Form1.resources
+C:\Users\2224096\OneDrive - Escola Digital\Documentos\GitHub\trabalho-escoladigital\Projeto Final\Mercadono\bin\Debug\Mercadono.exe.config
+C:\Users\2224096\OneDrive - Escola Digital\Documentos\GitHub\trabalho-escoladigital\Projeto Final\Mercadono\bin\Debug\Mercadono.exe
+C:\Users\2224096\OneDrive - Escola Digital\Documentos\GitHub\trabalho-escoladigital\Projeto Final\Mercadono\bin\Debug\Mercadono.pdb
+C:\Users\2224096\OneDrive - Escola Digital\Documentos\GitHub\trabalho-escoladigital\Projeto Final\Mercadono\bin\Debug\MaterialSkin.dll
+C:\Users\2224096\OneDrive - Escola Digital\Documentos\GitHub\trabalho-escoladigital\Projeto Final\Mercadono\obj\Debug\Mercadono.csproj.Up2Date
+C:\Users\2224096\OneDrive - Escola Digital\Documentos\GitHub\trabalho-escoladigital\Projeto Final\Mercadono\obj\Debug\Mercadono.exe
+C:\Users\2224096\OneDrive - Escola Digital\Documentos\GitHub\trabalho-escoladigital\Projeto Final\Mercadono\obj\Debug\Mercadono.pdb
+C:\Users\2224096\OneDrive - Escola Digital\Documentos\GitHub\trabalho-escoladigital\Projeto Final\Mercadono\obj\Debug\Mercadono.exe.config
