@@ -11,3 +11,4 @@ C:\Users\2224096\OneDrive - Escola Digital\Documentos\GitHub\trabalho-escoladigi
 C:\Users\2224096\OneDrive - Escola Digital\Documentos\GitHub\trabalho-escoladigital\Projeto Final\Mercadono\obj\Debug\Mercadono.exe
 C:\Users\2224096\OneDrive - Escola Digital\Documentos\GitHub\trabalho-escoladigital\Projeto Final\Mercadono\obj\Debug\Mercadono.pdb
 C:\Users\2224096\OneDrive - Escola Digital\Documentos\GitHub\trabalho-escoladigital\Projeto Final\Mercadono\obj\Debug\Mercadono.exe.config
+C:\Users\2224096\OneDrive - Escola Digital\Documentos\GitHub\trabalho-escoladigital\Projeto Final\Mercadono\obj\Debug\Mercadono.Login.resources
