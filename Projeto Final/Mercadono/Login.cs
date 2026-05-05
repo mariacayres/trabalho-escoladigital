@@ -73,8 +73,11 @@ namespace Mercadono
 
         // keep stubs to avoid designer missing-method errors
         private void textBox2passe_TextChanged(object sender, EventArgs e) { }
-        private void button1_Click(object sender, EventArgs e) { }
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) { }
-        private void label1_Click(object sender, EventArgs e) { }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -62,6 +62,10 @@
     <Compile Include="interface principal.Designer.cs">
       <DependentUpon>interface principal.cs</DependentUpon>
     </Compile>
+    <Compile Include="interface_principal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="interface_principal.Designer.cs" />
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -72,6 +76,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="interface principal.resx">
+      <DependentUpon>interface principal.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
@@ -102,6 +109,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Captura de ecrã 2026-04-28 100734.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Design sem nome %281%29.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
