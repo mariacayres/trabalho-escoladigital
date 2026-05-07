@@ -134,7 +134,7 @@ namespace Mercadono
             // 
             // textBoxname
             // 
-            this.textBoxname.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.textBoxname.BackColor = System.Drawing.Color.White;
             this.textBoxname.Location = new System.Drawing.Point(303, 197);
             this.textBoxname.Name = "textBoxname";
             this.textBoxname.Size = new System.Drawing.Size(226, 20);
@@ -142,7 +142,7 @@ namespace Mercadono
             // 
             // textBox1
             // 
-            this.textBox1.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.textBox1.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.textBox1.Location = new System.Drawing.Point(303, 245);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(226, 20);
@@ -183,7 +183,7 @@ namespace Mercadono
             // 
             // button1
             // 
-            this.button1.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.button1.BackColor = System.Drawing.Color.White;
             this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button1.Location = new System.Drawing.Point(303, 296);
             this.button1.Name = "button1";

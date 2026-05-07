@@ -92,7 +92,7 @@
             // 
             // textBoxname
             // 
-            this.textBoxname.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.textBoxname.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.textBoxname.Location = new System.Drawing.Point(279, 152);
             this.textBoxname.Name = "textBoxname";
             this.textBoxname.Size = new System.Drawing.Size(226, 20);
@@ -113,7 +113,7 @@
             // 
             // textBox3email
             // 
-            this.textBox3email.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.textBox3email.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.textBox3email.Location = new System.Drawing.Point(279, 192);
             this.textBox3email.Name = "textBox3email";
             this.textBox3email.Size = new System.Drawing.Size(226, 20);
@@ -131,7 +131,7 @@
             // 
             // textBox2passe
             // 
-            this.textBox2passe.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.textBox2passe.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.textBox2passe.Location = new System.Drawing.Point(279, 229);
             this.textBox2passe.Name = "textBox2passe";
             this.textBox2passe.Size = new System.Drawing.Size(226, 20);
@@ -150,7 +150,7 @@
             // 
             // button1
             // 
-            this.button1.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.button1.BackColor = System.Drawing.Color.Transparent;
             this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button1.Location = new System.Drawing.Point(297, 294);
             this.button1.Name = "button1";

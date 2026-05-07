@@ -10,10 +10,9 @@ using System.Windows.Forms;
 
 namespace Mercadono
 {
-    public partial class interface_principal : Form
+    public partial class ajuda_ao_cliente : Form
     {
-        // Constructor: ensure designer controls are initialized
-        public interface_principal()
+        public ajuda_ao_cliente()
         {
             InitializeComponent();
         }
@@ -26,7 +25,7 @@ namespace Mercadono
             {
                 if (this.pictureBox1 == null) return;
 
-                // If an image exists, size the form and picture box to the image (clamped to working area).
+                // Carrega a imagem da pictureBox1
                 if (this.pictureBox1.Image != null)
                 {
                     var imgSize = this.pictureBox1.Image.Size;
@@ -36,36 +35,41 @@ namespace Mercadono
                         Math.Min(imgSize.Height, wa.Height)
                     );
 
-                    // Ensure picture box is placed at the client origin and displays the image at native size
+                    // Configura a picture box para preencher todo o formulário
                     this.pictureBox1.Location = new Point(0, 0);
-                    this.pictureBox1.SizeMode = PictureBoxSizeMode.Normal;
+                    this.pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage; // Muda para StretchImage
                     this.pictureBox1.Size = target;
 
-                    // Make the form client area match the image size
+                    // Faz o formulário ter o mesmo tamanho da imagem
                     this.ClientSize = target;
+
+                    // Opcional: Remove bordas para parecer integrado
+                    this.FormBorderStyle = FormBorderStyle.FixedSingle;
+                    this.MaximizeBox = false;
+                    this.MinimizeBox = false;
                 }
                 else
                 {
-                    // No image: ensure picture is aligned and form matches the control size
                     this.pictureBox1.Location = Point.Empty;
                     this.ClientSize = this.pictureBox1.Size;
                 }
+
+                // Centraliza o formulário na tela
+                this.StartPosition = FormStartPosition.CenterScreen;
             }
             catch
             {
-                // Fail silently to avoid preventing the form from showing.
+                // Falha silenciosa
             }
         }
 
-
         private void pictureBox1_Click(object sender, EventArgs e)
         {
-            // Optional: custom click behavior for the picture.
-            // Example: close on Ctrl+click:
+            // Fecha o formulário se pressionar Ctrl + clique
             if ((Control.ModifierKeys & Keys.Control) == Keys.Control)
             {
                 this.Close();
             }
         }
     }
-}
+} 
