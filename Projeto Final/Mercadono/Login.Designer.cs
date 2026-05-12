@@ -179,7 +179,7 @@ namespace Mercadono
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(53, 17);
             this.label4.TabIndex = 17;
-            this.label4.Text = "Passe";
+            this.label4.Text = "Senha";
             // 
             // button1
             // 
@@ -189,7 +189,7 @@ namespace Mercadono
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(186, 23);
             this.button1.TabIndex = 18;
-            this.button1.Text = "criar conta";
+            this.button1.Text = "Criar conta";
             this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.button1.UseVisualStyleBackColor = false;
             // 

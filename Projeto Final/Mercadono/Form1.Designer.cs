@@ -145,7 +145,7 @@
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(53, 17);
             this.label4.TabIndex = 9;
-            this.label4.Text = "Passe";
+            this.label4.Text = "Senha";
             this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // button1
@@ -156,7 +156,7 @@
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(186, 23);
             this.button1.TabIndex = 6;
-            this.button1.Text = "criar conta";
+            this.button1.Text = "Criar conta";
             this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
