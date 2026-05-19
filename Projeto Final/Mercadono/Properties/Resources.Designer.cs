@@ -63,6 +63,16 @@ namespace Mercadono.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Adicionar_um_título__1__page_0001 {
+            get {
+                object obj = ResourceManager.GetObject("Adicionar um título (1)_page-0001", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Captura_de_ecrã_2026_04_28_100734 {
             get {
                 object obj = ResourceManager.GetObject("Captura de ecrã 2026-04-28 100734", resourceCulture);
