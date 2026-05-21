@@ -128,8 +128,6 @@
             this.label1.Size = new System.Drawing.Size(185, 33);
             this.label1.TabIndex = 8;
             this.label1.Text = "utilizador";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
-            // 
             // utilizadores
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);

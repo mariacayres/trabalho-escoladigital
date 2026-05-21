@@ -117,7 +117,6 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(815, 446);
             this.dataGridView1.TabIndex = 7;
-            // 
             // label1
             // 
             this.label1.AutoSize = true;

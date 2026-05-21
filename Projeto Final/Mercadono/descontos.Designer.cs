@@ -129,7 +129,7 @@
             this.label1.TabIndex = 8;
             this.label1.Text = "ajuda ao cliente";
             // 
-            // ajuda_ao_cliente_adimin
+            // descontos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -143,7 +143,7 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.pictureBox1);
-            this.Name = "ajuda_ao_cliente_adimin";
+            this.Name = "descontos";
             this.Text = "interface_principal";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();

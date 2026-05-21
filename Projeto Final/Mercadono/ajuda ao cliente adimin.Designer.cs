@@ -1,6 +1,6 @@
 ﻿namespace Mercadono
 {
-    partial class ajuda_ao_cliente_adimin
+    partial class ajuda_cliente_admin
     {
         /// <summary>
         /// Required designer variable.
@@ -40,8 +40,7 @@
             this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            this.SuspendLayout();
+            
             // 
             // pictureBox1
             // 
@@ -129,7 +128,6 @@
             this.label1.Size = new System.Drawing.Size(287, 33);
             this.label1.TabIndex = 8;
             this.label1.Text = "ajuda ao cliente";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // ajuda_ao_cliente_adimin
             // 
@@ -168,4 +166,3 @@
         private System.Windows.Forms.Label label1;
     }
 }
-    
