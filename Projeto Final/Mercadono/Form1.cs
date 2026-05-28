@@ -1,141 +1,91 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Collections.Specialized.BitVector32;
 
 namespace Mercadono
 {
-    public partial class Form1 : Form
+    public partial class interface_principal : Form
     {
-        public Form1()
+        public interface_principal()
         {
             InitializeComponent();
-
-            // Make Enter trigger the primary button if present
-            if (this.button1 != null) this.AcceptButton = this.button1;
-
-            // Ensure password textbox masks input if available
-            if (this.textBox2passe != null) this.textBox2passe.UseSystemPasswordChar = true;
-
-            // Defensive: ensure linkLabel1 is wired and clickable
-            if (this.linkLabel1 != null)
-            {
-                this.linkLabel1.Links.Clear();
-                this.linkLabel1.Links.Add(0, this.linkLabel1.Text.Length);
-                this.linkLabel1.LinkBehavior = LinkBehavior.HoverUnderline;
-                this.linkLabel1.BringToFront();
-                this.linkLabel1.LinkClicked -= linkLabel1_LinkClicked;
-                this.linkLabel1.LinkClicked += linkLabel1_LinkClicked;
-            }
+            ConfigureForm();
         }
 
-        private void Form1_Load(object sender, EventArgs e) { }
-
-        private void Form1_Load_1(object sender, EventArgs e) { }
-
-        private void pictureBox1_Click(object sender, EventArgs e) { }
-
-        private void label1_Click(object sender, EventArgs e) { }
-
-        private void label2_Click(object sender, EventArgs e) { }
-
-        private void textBox2_TextChanged(object sender, EventArgs e) { }
-
-        private void textBox1_TextChanged(object sender, EventArgs e) { }
-
-        private void label4_Click(object sender, EventArgs e) { }
-
-        private void pictureBox3_Click(object sender, EventArgs e) { }
-
-        private void button1_Click(object sender, EventArgs e)
+        private void ConfigureForm()
         {
-            try
-            {
-                var username = (textBoxname?.Text ?? string.Empty).Trim();
-                var email = (textBox3email?.Text ?? string.Empty).Trim();
-                var password = textBox2passe?.Text ?? string.Empty;
+            this.Text = "Mercadono - Interface Principal";
+            this.Size = new System.Drawing.Size(800, 600);
+            this.StartPosition = FormStartPosition.CenterScreen;
+            this.BackColor = System.Drawing.Color.White;
 
-                if (string.IsNullOrWhiteSpace(username) ||
-                    string.IsNullOrWhiteSpace(email) ||
-                    string.IsNullOrWhiteSpace(password))
-                {
-                    MessageBox.Show("Preencha todos os campos.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
+            Label lblWelcome = new Label();
+            lblWelcome.Text = $"Bem-vindo, {Session.LoggedUserName}!";
+            lblWelcome.Font = new System.Drawing.Font("Arial", 16, System.Drawing.FontStyle.Bold);
+            lblWelcome.ForeColor = System.Drawing.Color.DarkGreen;
+            lblWelcome.Location = new System.Drawing.Point(50, 50);
+            lblWelcome.Size = new System.Drawing.Size(700, 40);
+            this.Controls.Add(lblWelcome);
 
-                if (username.Length < 3)
-                {
-                    MessageBox.Show("O nome deve ter pelo menos 3 caracteres.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    textBoxname.Focus();
-                    return;
-                }
+            Label lblInfo = new Label();
+            lblInfo.Text = $"Email: {Session.LoggedUserEmail}\nID: {Session.LoggedUserId}";
+            lblInfo.Font = new System.Drawing.Font("Arial", 12);
+            lblInfo.Location = new System.Drawing.Point(50, 100);
+            lblInfo.Size = new System.Drawing.Size(700, 60);
+            this.Controls.Add(lblInfo);
 
-                if (password.Length < 6)
-                {
-                    MessageBox.Show("A senha deve ter pelo menos 6 caracteres.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    textBox2passe.Focus();
-                    return;
-                }
+            Button btnProducts = new Button();
+            btnProducts.Text = "Ver Produtos";
+            btnProducts.Font = new System.Drawing.Font("Arial", 12);
+            btnProducts.Size = new System.Drawing.Size(200, 50);
+            btnProducts.Location = new System.Drawing.Point(50, 200);
+            btnProducts.BackColor = System.Drawing.Color.LightBlue;
+            this.Controls.Add(btnProducts);
 
-                if (!email.Contains("@") || email.StartsWith("@") || email.EndsWith("@"))
-                {
-                    MessageBox.Show("Insira um email válido.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    textBox3email.Focus();
-                    return;
-                }
+            Button btnCart = new Button();
+            btnCart.Text = "Meu Carrinho";
+            btnCart.Font = new System.Drawing.Font("Arial", 12);
+            btnCart.Size = new System.Drawing.Size(200, 50);
+            btnCart.Location = new System.Drawing.Point(280, 200);
+            btnCart.BackColor = System.Drawing.Color.LightYellow;
+            this.Controls.Add(btnCart);
 
-                // Prevent double submission UI
-                button1.Enabled = false;
-                button1.Cursor = Cursors.WaitCursor;
+            Button btnHistory = new Button();
+            btnHistory.Text = "Minhas Compras";
+            btnHistory.Font = new System.Drawing.Font("Arial", 12);
+            btnHistory.Size = new System.Drawing.Size(200, 50);
+            btnHistory.Location = new System.Drawing.Point(510, 200);
+            btnHistory.BackColor = System.Drawing.Color.LightGray;
+            this.Controls.Add(btnHistory);
 
-                // Open main interface (replace with real logic)
-                var main = new interface_principal();
-                main.StartPosition = FormStartPosition.CenterScreen;
-                main.FormClosed += (s, args) =>
-                {
-                    try { this.Show(); }
-                    finally
-                    {
-                        button1.Enabled = true;
-                        button1.Cursor = Cursors.Hand;
-                    }
-                };
+            Button btnComplaint = new Button();
+            btnComplaint.Text = "Ajuda / Reclamação";
+            btnComplaint.Font = new System.Drawing.Font("Arial", 12);
+            btnComplaint.Size = new System.Drawing.Size(200, 50);
+            btnComplaint.Location = new System.Drawing.Point(50, 280);
+            btnComplaint.BackColor = System.Drawing.Color.LightCoral;
+            this.Controls.Add(btnComplaint);
 
-                main.Show();
-                this.Hide();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Erro ao processar a operação: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                button1.Enabled = true;
-                button1.Cursor = Cursors.Hand;
-            }
+            Button btnLogout = new Button();
+            btnLogout.Text = "Sair";
+            btnLogout.Font = new System.Drawing.Font("Arial", 12);
+            btnLogout.Size = new System.Drawing.Size(200, 50);
+            btnLogout.Location = new System.Drawing.Point(280, 280);
+            btnLogout.BackColor = System.Drawing.Color.Red;
+            btnLogout.ForeColor = System.Drawing.Color.White;
+            btnLogout.Click += BtnLogout_Click;
+            this.Controls.Add(btnLogout);
         }
 
-        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void BtnLogout_Click(object sender, EventArgs e)
         {
-            try
+            DialogResult result = MessageBox.Show("Deseja realmente sair?", "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
             {
-                var login = new Login();
-                login.StartPosition = FormStartPosition.CenterScreen;
-                login.FormClosed += (s, args) => { try { this.Show(); } catch { } };
-                login.Show();
-                this.Hide();
+                var loginForm = new Login();
+                loginForm.Show();
+                this.Close();
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Erro ao abrir o formulário de Login: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void linkLabel1_LinkClicked_1(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-
         }
     }
 }
