@@ -1,89 +1,171 @@
 ﻿using System;
+using System.Data.SqlClient;
 using System.Windows.Forms;
 using static System.Collections.Specialized.BitVector32;
 
 namespace Mercadono
 {
+    public partial class Login : Form
+    {
+        private string connectionString = @"Server=(localdb)\MSSQLLocalDB;Database=Mercadono;Integrated Security=True;";
+
+        public Login()
+        {
+            InitializeComponent();
+        }
+
+        private void btnLogin_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string email = txtEmail.Text.Trim();
+                string password = txtPassword.Text;
+
+                if (string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(password))
+                {
+                    MessageBox.Show("Preencha todos os campos.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    string query = "SELECT id_cliente, nome, is_admin FROM utilizadorTbl WHERE gmail = @email AND senha = @senha";
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@email", email);
+                        cmd.Parameters.AddWithValue("@senha", password);
+
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                Session.LoggedUserId = reader.GetInt32(0);
+                                Session.LoggedUserName = reader.GetString(1);
+                                Session.LoggedUserEmail = email;
+                                Session.IsAdmin = reader.GetInt32(2) == 1;
+
+                                if (Session.IsAdmin)
+                                {
+                                    Form2 adminForm = new Form2();
+                                    adminForm.StartPosition = FormStartPosition.CenterScreen;
+                                    adminForm.Show();
+                                    this.Hide();
+                                }
+                                else
+                                {
+                                    interface_principal mainForm = new interface_principal();
+                                    mainForm.StartPosition = FormStartPosition.CenterScreen;
+                                    mainForm.Show();
+                                    this.Hide();
+                                }
+                            }
+                            else
+                            {
+                                MessageBox.Show("Email ou senha incorretos!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao fazer login: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void linkRegister_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Form1 registerForm = new Form1();
+            registerForm.Show();
+            this.Hide();
+        }
+    }
     public partial class interface_principal : Form
     {
+        // Constructor: ensure designer controls are initialized
         public interface_principal()
         {
             InitializeComponent();
-            ConfigureForm();
-        }
 
-        private void ConfigureForm()
-        {
-            this.Text = "Mercadono - Interface Principal";
-            this.Size = new System.Drawing.Size(800, 600);
-            this.StartPosition = FormStartPosition.CenterScreen;
-            this.BackColor = System.Drawing.Color.White;
-
-            Label lblWelcome = new Label();
-            lblWelcome.Text = $"Bem-vindo, {Session.LoggedUserName}!";
-            lblWelcome.Font = new System.Drawing.Font("Arial", 16, System.Drawing.FontStyle.Bold);
-            lblWelcome.ForeColor = System.Drawing.Color.DarkGreen;
-            lblWelcome.Location = new System.Drawing.Point(50, 50);
-            lblWelcome.Size = new System.Drawing.Size(700, 40);
-            this.Controls.Add(lblWelcome);
-
-            Label lblInfo = new Label();
-            lblInfo.Text = $"Email: {Session.LoggedUserEmail}\nID: {Session.LoggedUserId}";
-            lblInfo.Font = new System.Drawing.Font("Arial", 12);
-            lblInfo.Location = new System.Drawing.Point(50, 100);
-            lblInfo.Size = new System.Drawing.Size(700, 60);
-            this.Controls.Add(lblInfo);
-
-            Button btnProducts = new Button();
-            btnProducts.Text = "Ver Produtos";
-            btnProducts.Font = new System.Drawing.Font("Arial", 12);
-            btnProducts.Size = new System.Drawing.Size(200, 50);
-            btnProducts.Location = new System.Drawing.Point(50, 200);
-            btnProducts.BackColor = System.Drawing.Color.LightBlue;
-            this.Controls.Add(btnProducts);
-
-            Button btnCart = new Button();
-            btnCart.Text = "Meu Carrinho";
-            btnCart.Font = new System.Drawing.Font("Arial", 12);
-            btnCart.Size = new System.Drawing.Size(200, 50);
-            btnCart.Location = new System.Drawing.Point(280, 200);
-            btnCart.BackColor = System.Drawing.Color.LightYellow;
-            this.Controls.Add(btnCart);
-
-            Button btnHistory = new Button();
-            btnHistory.Text = "Minhas Compras";
-            btnHistory.Font = new System.Drawing.Font("Arial", 12);
-            btnHistory.Size = new System.Drawing.Size(200, 50);
-            btnHistory.Location = new System.Drawing.Point(510, 200);
-            btnHistory.BackColor = System.Drawing.Color.LightGray;
-            this.Controls.Add(btnHistory);
-
-            Button btnComplaint = new Button();
-            btnComplaint.Text = "Ajuda / Reclamação";
-            btnComplaint.Font = new System.Drawing.Font("Arial", 12);
-            btnComplaint.Size = new System.Drawing.Size(200, 50);
-            btnComplaint.Location = new System.Drawing.Point(50, 280);
-            btnComplaint.BackColor = System.Drawing.Color.LightCoral;
-            this.Controls.Add(btnComplaint);
-
-            Button btnLogout = new Button();
-            btnLogout.Text = "Sair";
-            btnLogout.Font = new System.Drawing.Font("Arial", 12);
-            btnLogout.Size = new System.Drawing.Size(200, 50);
-            btnLogout.Location = new System.Drawing.Point(280, 280);
-            btnLogout.BackColor = System.Drawing.Color.Red;
-            btnLogout.ForeColor = System.Drawing.Color.White;
-            btnLogout.Click += BtnLogout_Click;
-            this.Controls.Add(btnLogout);
-        }
-
-        private void BtnLogout_Click(object sender, EventArgs e)
-        {
-            DialogResult result = MessageBox.Show("Deseja realmente sair?", "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (result == DialogResult.Yes)
+            // Wire button1 to open ajuda_ao_cliente if the control exists.
+            if (this.button1 != null)
             {
-                var loginForm = new Login();
-                loginForm.Show();
+                // Prevent double-subscription
+                this.button1.Click -= Button1_OpenAjuda_Click;
+                this.button1.Click += Button1_OpenAjuda_Click;
+                this.button1.Cursor = Cursors.Hand;
+            }
+        }
+
+        protected override void OnLoad(EventArgs e)
+        {
+            base.OnLoad(e);
+
+            try
+            {
+                if (this.pictureBox1 == null) return;
+
+                // If an image exists, size the form and picture box to the image (clamped to working area).
+                if (this.pictureBox1.Image != null)
+                {
+                    var imgSize = this.pictureBox1.Image.Size;
+                    var wa = Screen.FromControl(this).WorkingArea;
+                    var target = new Size(
+                        Math.Min(imgSize.Width, wa.Width),
+                        Math.Min(imgSize.Height, wa.Height)
+                    );
+
+                    // Ensure picture box is placed at the client origin and displays the image at native size
+                    this.pictureBox1.Location = new Point(0, 0);
+                    this.pictureBox1.SizeMode = PictureBoxSizeMode.Normal;
+                    this.pictureBox1.Size = target;
+
+                    // Make the form client area match the image size
+                    this.ClientSize = target;
+                }
+                else
+                {
+                    // No image: ensure picture is aligned and form matches the control size
+                    this.pictureBox1.Location = Point.Empty;
+                    this.ClientSize = this.pictureBox1.Size;
+                }
+            }
+            catch
+            {
+                // Fail silently to avoid preventing the form from showing.
+            }
+        }
+
+        private void Button1_OpenAjuda_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var ajudaForm = new ajuda_ao_cliente();
+                ajudaForm.StartPosition = FormStartPosition.CenterScreen;
+                // When ajuda form closes, show this form again
+                ajudaForm.FormClosed -= AjudaForm_FormClosed;
+                ajudaForm.FormClosed += AjudaForm_FormClosed;
+                ajudaForm.Show();
+                this.Hide();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao abrir Ajuda ao Cliente: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void AjudaForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            try { this.Show(); } catch { }
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            // Optional: custom click behavior for the picture.
+            // Example: close on Ctrl+click:
+            if ((Control.ModifierKeys & Keys.Control) == Keys.Control)
+            {
                 this.Close();
             }
         }

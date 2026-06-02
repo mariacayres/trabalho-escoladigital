@@ -102,7 +102,7 @@
             // 
             // button6
             // 
-            this.button6.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.button6.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.button6.Location = new System.Drawing.Point(22, 250);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(163, 27);
@@ -117,6 +117,7 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(815, 446);
             this.dataGridView1.TabIndex = 7;
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
