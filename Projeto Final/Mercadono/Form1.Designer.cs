@@ -1,6 +1,6 @@
 ﻿namespace Mercadono
 {
-    partial class interface_principal
+    partial class Form1
     {
         private System.ComponentModel.IContainer components = null;
         private System.Windows.Forms.PictureBox pictureBox1;

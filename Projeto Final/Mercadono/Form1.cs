@@ -1,173 +1,141 @@
 ﻿using System;
-using System.Data.SqlClient;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Collections.Specialized.BitVector32;
 
 namespace Mercadono
 {
-    public partial class Login : Form
+    public partial class Form1 : Form
     {
-        private string connectionString = @"Server=(localdb)\MSSQLLocalDB;Database=Mercadono;Integrated Security=True;";
-
-        public Login()
+        public Form1()
         {
             InitializeComponent();
+
+            // Make Enter trigger the primary button if present
+            if (this.button1 != null) this.AcceptButton = this.button1;
+
+            // Ensure password textbox masks input if available
+            if (this.textBox2passe != null) this.textBox2passe.UseSystemPasswordChar = true;
+
+            // Defensive: ensure linkLabel1 is wired and clickable
+            if (this.linkLabel1 != null)
+            {
+                this.linkLabel1.Links.Clear();
+                this.linkLabel1.Links.Add(0, this.linkLabel1.Text.Length);
+                this.linkLabel1.LinkBehavior = LinkBehavior.HoverUnderline;
+                this.linkLabel1.BringToFront();
+                this.linkLabel1.LinkClicked -= linkLabel1_LinkClicked;
+                this.linkLabel1.LinkClicked += linkLabel1_LinkClicked;
+            }
         }
 
-        private void btnLogin_Click(object sender, EventArgs e)
+        private void Form1_Load(object sender, EventArgs e) { }
+
+        private void Form1_Load_1(object sender, EventArgs e) { }
+
+        private void pictureBox1_Click(object sender, EventArgs e) { }
+
+        private void label1_Click(object sender, EventArgs e) { }
+
+        private void label2_Click(object sender, EventArgs e) { }
+
+        private void textBox2_TextChanged(object sender, EventArgs e) { }
+
+        private void textBox1_TextChanged(object sender, EventArgs e) { }
+
+        private void label4_Click(object sender, EventArgs e) { }
+
+        private void pictureBox3_Click(object sender, EventArgs e) { }
+
+        private void button1_Click(object sender, EventArgs e)
         {
             try
             {
-                string email = txtEmail.Text.Trim();
-                string password = txtPassword.Text;
+                var username = (textBoxname?.Text ?? string.Empty).Trim();
+                var email = (textBox3email?.Text ?? string.Empty).Trim();
+                var password = textBox2passe?.Text ?? string.Empty;
 
-                if (string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(password))
+                if (string.IsNullOrWhiteSpace(username) ||
+                    string.IsNullOrWhiteSpace(email) ||
+                    string.IsNullOrWhiteSpace(password))
                 {
                     MessageBox.Show("Preencha todos os campos.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
-                using (SqlConnection conn = new SqlConnection(connectionString))
+                if (username.Length < 3)
                 {
-                    conn.Open();
-                    string query = "SELECT id_cliente, nome, is_admin FROM utilizadorTbl WHERE gmail = @email AND senha = @senha";
-                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    MessageBox.Show("O nome deve ter pelo menos 3 caracteres.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    textBoxname.Focus();
+                    return;
+                }
+
+                if (password.Length < 6)
+                {
+                    MessageBox.Show("A senha deve ter pelo menos 6 caracteres.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    textBox2passe.Focus();
+                    return;
+                }
+
+                if (!email.Contains("@") || email.StartsWith("@") || email.EndsWith("@"))
+                {
+                    MessageBox.Show("Insira um email válido.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    textBox3email.Focus();
+                    return;
+                }
+
+                // Prevent double submission UI
+                button1.Enabled = false;
+                button1.Cursor = Cursors.WaitCursor;
+
+                // Open main interface (replace with real logic)
+                var main = new interface_principal();
+                main.StartPosition = FormStartPosition.CenterScreen;
+                main.FormClosed += (s, args) =>
+                {
+                    try { this.Show(); }
+                    finally
                     {
-                        cmd.Parameters.AddWithValue("@email", email);
-                        cmd.Parameters.AddWithValue("@senha", password);
-
-                        using (SqlDataReader reader = cmd.ExecuteReader())
-                        {
-                            if (reader.Read())
-                            {
-                                Session.LoggedUserId = reader.GetInt32(0);
-                                Session.LoggedUserName = reader.GetString(1);
-                                Session.LoggedUserEmail = email;
-                                Session.IsAdmin = reader.GetInt32(2) == 1;
-
-                                if (Session.IsAdmin)
-                                {
-                                    Form2 adminForm = new Form2();
-                                    adminForm.StartPosition = FormStartPosition.CenterScreen;
-                                    adminForm.Show();
-                                    this.Hide();
-                                }
-                                else
-                                {
-                                    interface_principal mainForm = new interface_principal();
-                                    mainForm.StartPosition = FormStartPosition.CenterScreen;
-                                    mainForm.Show();
-                                    this.Hide();
-                                }
-                            }
-                            else
-                            {
-                                MessageBox.Show("Email ou senha incorretos!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            }
-                        }
+                        button1.Enabled = true;
+                        button1.Cursor = Cursors.Hand;
                     }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Erro ao fazer login: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
+                };
 
-        private void linkRegister_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            Form1 registerForm = new Form1();
-            registerForm.Show();
-            this.Hide();
-        }
-    }
-    public partial class interface_principal : Form
-    {
-        // Constructor: ensure designer controls are initialized
-        public interface_principal()
-        {
-            InitializeComponent();
-
-            // Wire button1 to open ajuda_ao_cliente if the control exists.
-            if (this.button1 != null)
-            {
-                // Prevent double-subscription
-                this.button1.Click -= Button1_OpenAjuda_Click;
-                this.button1.Click += Button1_OpenAjuda_Click;
-                this.button1.Cursor = Cursors.Hand;
-            }
-        }
-
-        protected override void OnLoad(EventArgs e)
-        {
-            base.OnLoad(e);
-
-            try
-            {
-                if (this.pictureBox1 == null) return;
-
-                // If an image exists, size the form and picture box to the image (clamped to working area).
-                if (this.pictureBox1.Image != null)
-                {
-                    var imgSize = this.pictureBox1.Image.Size;
-                    var wa = Screen.FromControl(this).WorkingArea;
-                    var target = new Size(
-                        Math.Min(imgSize.Width, wa.Width),
-                        Math.Min(imgSize.Height, wa.Height)
-                    );
-
-                    // Ensure picture box is placed at the client origin and displays the image at native size
-                    this.pictureBox1.Location = new Point(0, 0);
-                    this.pictureBox1.SizeMode = PictureBoxSizeMode.Normal;
-                    this.pictureBox1.Size = target;
-
-                    // Make the form client area match the image size
-                    this.ClientSize = target;
-                }
-                else
-                {
-                    // No image: ensure picture is aligned and form matches the control size
-                    this.pictureBox1.Location = Point.Empty;
-                    this.ClientSize = this.pictureBox1.Size;
-                }
-            }
-            catch
-            {
-                // Fail silently to avoid preventing the form from showing.
-            }
-        }
-
-        private void Button1_OpenAjuda_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                var ajudaForm = new ajuda_ao_cliente();
-                ajudaForm.StartPosition = FormStartPosition.CenterScreen;
-                // When ajuda form closes, show this form again
-                ajudaForm.FormClosed -= AjudaForm_FormClosed;
-                ajudaForm.FormClosed += AjudaForm_FormClosed;
-                ajudaForm.Show();
+                main.Show();
                 this.Hide();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Erro ao abrir Ajuda ao Cliente: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Erro ao processar a operação: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                button1.Enabled = true;
+                button1.Cursor = Cursors.Hand;
             }
         }
 
-        private void AjudaForm_FormClosed(object sender, FormClosedEventArgs e)
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            try { this.Show(); } catch { }
-        }
-
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-            // Optional: custom click behavior for the picture.
-            // Example: close on Ctrl+click:
-            if ((Control.ModifierKeys & Keys.Control) == Keys.Control)
+            try
             {
-                this.Close();
+                var login = new login();
+                login.StartPosition = FormStartPosition.CenterScreen;
+                login.FormClosed += (s, args) => { try { this.Show(); } catch { } };
+                login.Show();
+                this.Hide();
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao abrir o formulário de Login: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void linkLabel1_LinkClicked_1(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+
         }
     }
 }
