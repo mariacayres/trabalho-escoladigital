@@ -136,6 +136,7 @@
             this.textBox2passe.Name = "textBox2passe";
             this.textBox2passe.Size = new System.Drawing.Size(226, 20);
             this.textBox2passe.TabIndex = 13;
+            this.textBox2passe.TextChanged += new System.EventHandler(this.textBox2passe_TextChanged);
             // 
             // label4
             // 
