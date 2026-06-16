@@ -62,6 +62,7 @@
     <Compile Include="ajuda ao cliente.Designer.cs">
       <DependentUpon>ajuda ao cliente.cs</DependentUpon>
     </Compile>
+    <Compile Include="Session.cs" />
     <Compile Include="descontos.cs">
       <SubType>Form</SubType>
     </Compile>
