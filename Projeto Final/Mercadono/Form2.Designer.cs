@@ -46,7 +46,7 @@
             // 
             this.pictureBox1.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.pictureBox1.Image = global::Mercadono.Properties.Resources.Design_sem_nome__1_;
-            this.pictureBox1.Location = new System.Drawing.Point(-6, 0);
+            this.pictureBox1.Location = new System.Drawing.Point(-18, -15);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(1140, 634);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -80,7 +80,7 @@
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(163, 27);
             this.button2.TabIndex = 3;
-            this.button2.Text = "descontos";
+            this.button2.Text = "compras";
             this.button2.UseVisualStyleBackColor = true;
             // 
             // button3
@@ -118,6 +118,7 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(815, 446);
             this.dataGridView1.TabIndex = 7;
+            // 
             // label1
             // 
             this.label1.AutoSize = true;

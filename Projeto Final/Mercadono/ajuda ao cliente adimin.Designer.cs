@@ -40,7 +40,8 @@
             this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.SuspendLayout();
             // 
             // pictureBox1
             // 
@@ -79,8 +80,9 @@
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(163, 27);
             this.button2.TabIndex = 3;
-            this.button2.Text = "descontos";
+            this.button2.Text = "compras";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click_1);
             // 
             // button3
             // 
@@ -129,7 +131,7 @@
             this.label1.TabIndex = 8;
             this.label1.Text = "ajuda ao cliente";
             // 
-            // ajuda_ao_cliente_adimin
+            // ajuda_cliente_admin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -143,7 +145,7 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.pictureBox1);
-            this.Name = "ajuda_ao_cliente_adimin";
+            this.Name = "ajuda_cliente_admin";
             this.Text = "interface_principal";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();

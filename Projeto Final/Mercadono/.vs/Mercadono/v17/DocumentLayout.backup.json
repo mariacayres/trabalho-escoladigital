@@ -3,15 +3,51 @@
   "WorkspaceRootPath": "C:\\Users\\2224096\\OneDrive - Escola Digital\\Documentos\\GitHub\\trabalho-escoladigital\\Projeto Final\\Mercadono\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A4509711-8E95-4471-AF3B-96C990A5B9BF}|Mercadono.csproj|C:\\Users\\2224096\\OneDrive - Escola Digital\\Documentos\\GitHub\\trabalho-escoladigital\\Projeto Final\\Mercadono\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{A4509711-8E95-4471-AF3B-96C990A5B9BF}|Mercadono.csproj|C:\\Users\\2224096\\OneDrive - Escola Digital\\Documentos\\GitHub\\trabalho-escoladigital\\Projeto Final\\Mercadono\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{A4509711-8E95-4471-AF3B-96C990A5B9BF}|Mercadono.csproj|solutionrelative:login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A4509711-8E95-4471-AF3B-96C990A5B9BF}|Mercadono.csproj|C:\\Users\\2224096\\OneDrive - Escola Digital\\Documentos\\GitHub\\trabalho-escoladigital\\Projeto Final\\Mercadono\\interface principal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{A4509711-8E95-4471-AF3B-96C990A5B9BF}|Mercadono.csproj|solutionrelative:interface principal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A4509711-8E95-4471-AF3B-96C990A5B9BF}|Mercadono.csproj|C:\\Users\\2224096\\OneDrive - Escola Digital\\Documentos\\GitHub\\trabalho-escoladigital\\Projeto Final\\Mercadono\\form2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{A4509711-8E95-4471-AF3B-96C990A5B9BF}|Mercadono.csproj|solutionrelative:form2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A4509711-8E95-4471-AF3B-96C990A5B9BF}|Mercadono.csproj|C:\\Users\\2224096\\OneDrive - Escola Digital\\Documentos\\GitHub\\trabalho-escoladigital\\Projeto Final\\Mercadono\\descontos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{A4509711-8E95-4471-AF3B-96C990A5B9BF}|Mercadono.csproj|solutionrelative:descontos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A4509711-8E95-4471-AF3B-96C990A5B9BF}|Mercadono.csproj|c:\\users\\2224096\\onedrive - escola digital\\documentos\\github\\trabalho-escoladigital\\projeto final\\mercadono\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A4509711-8E95-4471-AF3B-96C990A5B9BF}|Mercadono.csproj|solutionrelative:login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A4509711-8E95-4471-AF3B-96C990A5B9BF}|Mercadono.csproj|c:\\users\\2224096\\onedrive - escola digital\\documentos\\github\\trabalho-escoladigital\\projeto final\\mercadono\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{A4509711-8E95-4471-AF3B-96C990A5B9BF}|Mercadono.csproj|C:\\Users\\2224096\\OneDrive - Escola Digital\\Documentos\\GitHub\\trabalho-escoladigital\\Projeto Final\\Mercadono\\login.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A4509711-8E95-4471-AF3B-96C990A5B9BF}|Mercadono.csproj|solutionrelative:login.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A4509711-8E95-4471-AF3B-96C990A5B9BF}|Mercadono.csproj|C:\\Users\\2224096\\OneDrive - Escola Digital\\Documentos\\GitHub\\trabalho-escoladigital\\Projeto Final\\Mercadono\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A4509711-8E95-4471-AF3B-96C990A5B9BF}|Mercadono.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A4509711-8E95-4471-AF3B-96C990A5B9BF}|Mercadono.csproj|c:\\users\\2224096\\onedrive - escola digital\\documentos\\github\\trabalho-escoladigital\\projeto final\\mercadono\\session.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{A4509711-8E95-4471-AF3B-96C990A5B9BF}|Mercadono.csproj|C:\\Users\\2224096\\OneDrive - Escola Digital\\Documentos\\GitHub\\trabalho-escoladigital\\Projeto Final\\Mercadono\\form2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A4509711-8E95-4471-AF3B-96C990A5B9BF}|Mercadono.csproj|solutionrelative:form2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A4509711-8E95-4471-AF3B-96C990A5B9BF}|Mercadono.csproj|C:\\Users\\2224096\\OneDrive - Escola Digital\\Documentos\\GitHub\\trabalho-escoladigital\\Projeto Final\\Mercadono\\form1.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A4509711-8E95-4471-AF3B-96C990A5B9BF}|Mercadono.csproj|solutionrelative:form1.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A4509711-8E95-4471-AF3B-96C990A5B9BF}|Mercadono.csproj|C:\\Users\\2224096\\OneDrive - Escola Digital\\Documentos\\GitHub\\trabalho-escoladigital\\Projeto Final\\Mercadono\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{A4509711-8E95-4471-AF3B-96C990A5B9BF}|Mercadono.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A4509711-8E95-4471-AF3B-96C990A5B9BF}|Mercadono.csproj|C:\\Users\\2224096\\OneDrive - Escola Digital\\Documentos\\GitHub\\trabalho-escoladigital\\Projeto Final\\Mercadono\\ajuda ao cliente adimin.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A4509711-8E95-4471-AF3B-96C990A5B9BF}|Mercadono.csproj|solutionrelative:ajuda ao cliente adimin.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A4509711-8E95-4471-AF3B-96C990A5B9BF}|Mercadono.csproj|C:\\Users\\2224096\\OneDrive - Escola Digital\\Documentos\\GitHub\\trabalho-escoladigital\\Projeto Final\\Mercadono\\session.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A4509711-8E95-4471-AF3B-96C990A5B9BF}|Mercadono.csproj|solutionrelative:session.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -19,24 +55,8 @@
       "RelativeMoniker": "D:0:0:{A4509711-8E95-4471-AF3B-96C990A5B9BF}|Mercadono.csproj|solutionrelative:descontos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A4509711-8E95-4471-AF3B-96C990A5B9BF}|Mercadono.csproj|C:\\Users\\2224096\\OneDrive - Escola Digital\\Documentos\\GitHub\\trabalho-escoladigital\\Projeto Final\\Mercadono\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{A4509711-8E95-4471-AF3B-96C990A5B9BF}|Mercadono.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A4509711-8E95-4471-AF3B-96C990A5B9BF}|Mercadono.csproj|C:\\Users\\2224096\\OneDrive - Escola Digital\\Documentos\\GitHub\\trabalho-escoladigital\\Projeto Final\\Mercadono\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{A4509711-8E95-4471-AF3B-96C990A5B9BF}|Mercadono.csproj|solutionrelative:login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{A4509711-8E95-4471-AF3B-96C990A5B9BF}|Mercadono.csproj|C:\\Users\\2224096\\OneDrive - Escola Digital\\Documentos\\GitHub\\trabalho-escoladigital\\Projeto Final\\Mercadono\\utilizadores.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{A4509711-8E95-4471-AF3B-96C990A5B9BF}|Mercadono.csproj|solutionrelative:utilizadores.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A4509711-8E95-4471-AF3B-96C990A5B9BF}|Mercadono.csproj|C:\\Users\\2224096\\OneDrive - Escola Digital\\Documentos\\GitHub\\trabalho-escoladigital\\Projeto Final\\Mercadono\\form2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{A4509711-8E95-4471-AF3B-96C990A5B9BF}|Mercadono.csproj|solutionrelative:form2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A4509711-8E95-4471-AF3B-96C990A5B9BF}|Mercadono.csproj|C:\\Users\\2224096\\OneDrive - Escola Digital\\Documentos\\GitHub\\trabalho-escoladigital\\Projeto Final\\Mercadono\\login.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A4509711-8E95-4471-AF3B-96C990A5B9BF}|Mercadono.csproj|solutionrelative:login.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A4509711-8E95-4471-AF3B-96C990A5B9BF}|Mercadono.csproj|C:\\Users\\2224096\\OneDrive - Escola Digital\\Documentos\\GitHub\\trabalho-escoladigital\\Projeto Final\\Mercadono\\utilizadores.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -45,14 +65,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{A4509711-8E95-4471-AF3B-96C990A5B9BF}|Mercadono.csproj|C:\\Users\\2224096\\OneDrive - Escola Digital\\Documentos\\GitHub\\trabalho-escoladigital\\Projeto Final\\Mercadono\\utilizadores.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A4509711-8E95-4471-AF3B-96C990A5B9BF}|Mercadono.csproj|solutionrelative:utilizadores.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A4509711-8E95-4471-AF3B-96C990A5B9BF}|Mercadono.csproj|C:\\Users\\2224096\\OneDrive - Escola Digital\\Documentos\\GitHub\\trabalho-escoladigital\\Projeto Final\\Mercadono\\form1.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A4509711-8E95-4471-AF3B-96C990A5B9BF}|Mercadono.csproj|solutionrelative:form1.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A4509711-8E95-4471-AF3B-96C990A5B9BF}|Mercadono.csproj|C:\\Users\\2224096\\OneDrive - Escola Digital\\Documentos\\GitHub\\trabalho-escoladigital\\Projeto Final\\Mercadono\\form2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A4509711-8E95-4471-AF3B-96C990A5B9BF}|Mercadono.csproj|solutionrelative:form2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A4509711-8E95-4471-AF3B-96C990A5B9BF}|Mercadono.csproj|C:\\Users\\2224096\\OneDrive - Escola Digital\\Documentos\\GitHub\\trabalho-escoladigital\\Projeto Final\\Mercadono\\interface principal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -65,10 +77,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{A4509711-8E95-4471-AF3B-96C990A5B9BF}|Mercadono.csproj|C:\\Users\\2224096\\OneDrive - Escola Digital\\Documentos\\GitHub\\trabalho-escoladigital\\Projeto Final\\Mercadono\\estoque.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A4509711-8E95-4471-AF3B-96C990A5B9BF}|Mercadono.csproj|solutionrelative:estoque.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A4509711-8E95-4471-AF3B-96C990A5B9BF}|Mercadono.csproj|C:\\Users\\2224096\\OneDrive - Escola Digital\\Documentos\\GitHub\\trabalho-escoladigital\\Projeto Final\\Mercadono\\interface principal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{A4509711-8E95-4471-AF3B-96C990A5B9BF}|Mercadono.csproj|solutionrelative:interface principal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A4509711-8E95-4471-AF3B-96C990A5B9BF}|Mercadono.csproj|C:\\Users\\2224096\\OneDrive - Escola Digital\\Documentos\\GitHub\\trabalho-escoladigital\\Projeto Final\\Mercadono\\estoque.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
@@ -87,16 +95,8 @@
       "RelativeMoniker": "D:0:0:{A4509711-8E95-4471-AF3B-96C990A5B9BF}|Mercadono.csproj|solutionrelative:ajuda ao cliente.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A4509711-8E95-4471-AF3B-96C990A5B9BF}|Mercadono.csproj|C:\\Users\\2224096\\OneDrive - Escola Digital\\Documentos\\GitHub\\trabalho-escoladigital\\Projeto Final\\Mercadono\\ajuda ao cliente adimin.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A4509711-8E95-4471-AF3B-96C990A5B9BF}|Mercadono.csproj|solutionrelative:ajuda ao cliente adimin.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{A4509711-8E95-4471-AF3B-96C990A5B9BF}|Mercadono.csproj|C:\\Users\\2224096\\OneDrive - Escola Digital\\Documentos\\GitHub\\trabalho-escoladigital\\Projeto Final\\Mercadono\\ajuda ao cliente adimin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A4509711-8E95-4471-AF3B-96C990A5B9BF}|Mercadono.csproj|solutionrelative:ajuda ao cliente adimin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A4509711-8E95-4471-AF3B-96C990A5B9BF}|Mercadono.csproj|C:\\Users\\2224096\\OneDrive - Escola Digital\\Documentos\\GitHub\\trabalho-escoladigital\\Projeto Final\\Mercadono\\descontos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{A4509711-8E95-4471-AF3B-96C990A5B9BF}|Mercadono.csproj|solutionrelative:descontos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A4509711-8E95-4471-AF3B-96C990A5B9BF}|Mercadono.csproj|C:\\Users\\2224096\\OneDrive - Escola Digital\\Documentos\\GitHub\\trabalho-escoladigital\\Projeto Final\\Mercadono\\ajuda ao cliente.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
@@ -114,16 +114,32 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 14,
+          "SelectedChildIndex": 12,
           "Children": [
             {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{40ea2e6b-2121-4bb8-a43e-c83c04b51041}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 9,
               "Title": "Form1.cs [Design]",
               "DocumentMoniker": "C:\\Users\\2224096\\OneDrive - Escola Digital\\Documentos\\GitHub\\trabalho-escoladigital\\Projeto Final\\Mercadono\\Form1.cs",
               "RelativeDocumentMoniker": "Form1.cs",
-              "ToolTip": "C:\\Users\\2224096\\OneDrive - Escola Digital\\Documentos\\GitHub\\trabalho-escoladigital\\Projeto Final\\Mercadono\\Form1.cs [Design]*",
-              "RelativeToolTip": "Form1.cs [Design]*",
+              "ToolTip": "C:\\Users\\2224096\\OneDrive - Escola Digital\\Documentos\\GitHub\\trabalho-escoladigital\\Projeto Final\\Mercadono\\Form1.cs [Design]",
+              "RelativeToolTip": "Form1.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-05-07T07:55:35.732Z",
               "IsPinned": true,
@@ -143,7 +159,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 1,
               "Title": "interface principal.cs [Design]",
               "DocumentMoniker": "C:\\Users\\2224096\\OneDrive - Escola Digital\\Documentos\\GitHub\\trabalho-escoladigital\\Projeto Final\\Mercadono\\interface principal.cs",
               "RelativeDocumentMoniker": "interface principal.cs",
@@ -151,11 +167,12 @@
               "RelativeToolTip": "interface principal.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-05-07T07:55:41.784Z",
-              "IsPinned": true
+              "IsPinned": true,
+              "EditorCaption": " [Design]"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 2,
               "Title": "Form2.cs [Design]",
               "DocumentMoniker": "C:\\Users\\2224096\\OneDrive - Escola Digital\\Documentos\\GitHub\\trabalho-escoladigital\\Projeto Final\\Mercadono\\Form2.cs",
               "RelativeDocumentMoniker": "Form2.cs",
@@ -163,11 +180,12 @@
               "RelativeToolTip": "Form2.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-05-19T07:37:10.634Z",
-              "IsPinned": true
+              "IsPinned": true,
+              "EditorCaption": " [Design]"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
+              "DocumentIndex": 3,
               "Title": "descontos.cs [Design]",
               "DocumentMoniker": "C:\\Users\\2224096\\OneDrive - Escola Digital\\Documentos\\GitHub\\trabalho-escoladigital\\Projeto Final\\Mercadono\\descontos.cs",
               "RelativeDocumentMoniker": "descontos.cs",
@@ -180,7 +198,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 13,
               "Title": "utilizadores.cs [Design]",
               "DocumentMoniker": "C:\\Users\\2224096\\OneDrive - Escola Digital\\Documentos\\GitHub\\trabalho-escoladigital\\Projeto Final\\Mercadono\\utilizadores.cs",
               "RelativeDocumentMoniker": "utilizadores.cs",
@@ -192,7 +210,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 19,
               "Title": "estoque.cs [Design]",
               "DocumentMoniker": "C:\\Users\\2224096\\OneDrive - Escola Digital\\Documentos\\GitHub\\trabalho-escoladigital\\Projeto Final\\Mercadono\\estoque.cs",
               "RelativeDocumentMoniker": "estoque.cs",
@@ -204,7 +222,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 20,
               "Title": "ajuda ao cliente adimin.cs [Design]",
               "DocumentMoniker": "C:\\Users\\2224096\\OneDrive - Escola Digital\\Documentos\\GitHub\\trabalho-escoladigital\\Projeto Final\\Mercadono\\ajuda ao cliente adimin.cs",
               "RelativeDocumentMoniker": "ajuda ao cliente adimin.cs",
@@ -216,62 +234,46 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 0,
               "Title": "login.cs [Design]",
               "DocumentMoniker": "C:\\Users\\2224096\\OneDrive - Escola Digital\\Documentos\\GitHub\\trabalho-escoladigital\\Projeto Final\\Mercadono\\login.cs",
               "RelativeDocumentMoniker": "login.cs",
-              "ToolTip": "C:\\Users\\2224096\\OneDrive - Escola Digital\\Documentos\\GitHub\\trabalho-escoladigital\\Projeto Final\\Mercadono\\login.cs [Design]*",
-              "RelativeToolTip": "login.cs [Design]*",
+              "ToolTip": "C:\\Users\\2224096\\OneDrive - Escola Digital\\Documentos\\GitHub\\trabalho-escoladigital\\Projeto Final\\Mercadono\\login.cs [Design]",
+              "RelativeToolTip": "login.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-06-09T09:19:10.265Z",
               "IsPinned": true,
               "EditorCaption": " [Design]"
             },
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{40ea2e6b-2121-4bb8-a43e-c83c04b51041}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
-            },
-            {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 5,
               "Title": "login.Designer.cs",
               "DocumentMoniker": "C:\\Users\\2224096\\OneDrive - Escola Digital\\Documentos\\GitHub\\trabalho-escoladigital\\Projeto Final\\Mercadono\\login.Designer.cs",
               "RelativeDocumentMoniker": "login.Designer.cs",
               "ToolTip": "C:\\Users\\2224096\\OneDrive - Escola Digital\\Documentos\\GitHub\\trabalho-escoladigital\\Projeto Final\\Mercadono\\login.Designer.cs",
               "RelativeToolTip": "login.Designer.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAADoAAAAAAAAAAAApwFMAAAA/AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-06-09T09:22:24.505Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 4,
               "Title": "login.cs",
               "DocumentMoniker": "C:\\Users\\2224096\\OneDrive - Escola Digital\\Documentos\\GitHub\\trabalho-escoladigital\\Projeto Final\\Mercadono\\login.cs",
               "RelativeDocumentMoniker": "login.cs",
-              "ToolTip": "C:\\Users\\2224096\\OneDrive - Escola Digital\\Documentos\\GitHub\\trabalho-escoladigital\\Projeto Final\\Mercadono\\login.cs*",
-              "RelativeToolTip": "login.cs*",
-              "ViewState": "AgIAAKMAAAAAAAAAAAAqwNIAAAABAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\2224096\\OneDrive - Escola Digital\\Documentos\\GitHub\\trabalho-escoladigital\\Projeto Final\\Mercadono\\login.cs",
+              "RelativeToolTip": "login.cs",
+              "ViewState": "AgIAAJEAAAAAAAAAAAAUwK0AAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-06-09T09:19:53.766Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 21,
               "Title": "estoque.cs",
               "DocumentMoniker": "C:\\Users\\2224096\\OneDrive - Escola Digital\\Documentos\\GitHub\\trabalho-escoladigital\\Projeto Final\\Mercadono\\estoque.cs",
               "RelativeDocumentMoniker": "estoque.cs",
@@ -283,7 +285,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 12,
               "Title": "descontos.cs",
               "DocumentMoniker": "C:\\Users\\2224096\\OneDrive - Escola Digital\\Documentos\\GitHub\\trabalho-escoladigital\\Projeto Final\\Mercadono\\descontos.cs",
               "RelativeDocumentMoniker": "descontos.cs",
@@ -296,20 +298,19 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 11,
               "Title": "Session.cs",
               "DocumentMoniker": "C:\\Users\\2224096\\OneDrive - Escola Digital\\Documentos\\GitHub\\trabalho-escoladigital\\Projeto Final\\Mercadono\\Session.cs",
               "RelativeDocumentMoniker": "Session.cs",
-              "ToolTip": "C:\\Users\\2224096\\OneDrive - Escola Digital\\Documentos\\GitHub\\trabalho-escoladigital\\Projeto Final\\Mercadono\\Session.cs*",
-              "RelativeToolTip": "Session.cs*",
+              "ToolTip": "C:\\Users\\2224096\\OneDrive - Escola Digital\\Documentos\\GitHub\\trabalho-escoladigital\\Projeto Final\\Mercadono\\Session.cs",
+              "RelativeToolTip": "Session.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAZAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-16T08:03:23.541Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-16T08:03:23.541Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 14,
               "Title": "utilizadores.cs",
               "DocumentMoniker": "C:\\Users\\2224096\\OneDrive - Escola Digital\\Documentos\\GitHub\\trabalho-escoladigital\\Projeto Final\\Mercadono\\utilizadores.cs",
               "RelativeDocumentMoniker": "utilizadores.cs",
@@ -321,7 +322,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 15,
               "Title": "utilizadores.Designer.cs",
               "DocumentMoniker": "C:\\Users\\2224096\\OneDrive - Escola Digital\\Documentos\\GitHub\\trabalho-escoladigital\\Projeto Final\\Mercadono\\utilizadores.Designer.cs",
               "RelativeDocumentMoniker": "utilizadores.Designer.cs",
@@ -333,7 +334,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 18,
               "Title": "estoque.Designer.cs",
               "DocumentMoniker": "C:\\Users\\2224096\\OneDrive - Escola Digital\\Documentos\\GitHub\\trabalho-escoladigital\\Projeto Final\\Mercadono\\estoque.Designer.cs",
               "RelativeDocumentMoniker": "estoque.Designer.cs",
@@ -345,19 +346,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 10,
               "Title": "ajuda ao cliente adimin.Designer.cs",
               "DocumentMoniker": "C:\\Users\\2224096\\OneDrive - Escola Digital\\Documentos\\GitHub\\trabalho-escoladigital\\Projeto Final\\Mercadono\\ajuda ao cliente adimin.Designer.cs",
               "RelativeDocumentMoniker": "ajuda ao cliente adimin.Designer.cs",
               "ToolTip": "C:\\Users\\2224096\\OneDrive - Escola Digital\\Documentos\\GitHub\\trabalho-escoladigital\\Projeto Final\\Mercadono\\ajuda ao cliente adimin.Designer.cs",
               "RelativeToolTip": "ajuda ao cliente adimin.Designer.cs",
-              "ViewState": "AgIAAGcAAAAAAAAAAAAMwIEAAAAyAAAAAAAAAA==",
+              "ViewState": "AgIAAIQAAAAAAAAAAAApwJ0AAAAsAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-19T10:32:51.323Z"
+              "WhenOpened": "2026-05-19T10:32:51.323Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 23,
               "Title": "ajuda ao cliente adimin.cs",
               "DocumentMoniker": "C:\\Users\\2224096\\OneDrive - Escola Digital\\Documentos\\GitHub\\trabalho-escoladigital\\Projeto Final\\Mercadono\\ajuda ao cliente adimin.cs",
               "RelativeDocumentMoniker": "ajuda ao cliente adimin.cs",
@@ -369,7 +371,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 17,
               "Title": "Form2.Designer.cs",
               "DocumentMoniker": "C:\\Users\\2224096\\OneDrive - Escola Digital\\Documentos\\GitHub\\trabalho-escoladigital\\Projeto Final\\Mercadono\\Form2.Designer.cs",
               "RelativeDocumentMoniker": "Form2.Designer.cs",
@@ -377,11 +379,12 @@
               "RelativeToolTip": "Form2.Designer.cs",
               "ViewState": "AgIAAF0AAAAAAAAAAAAowHcAAAAsAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-19T08:09:05.831Z"
+              "WhenOpened": "2026-05-19T08:09:05.831Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 7,
               "Title": "Form2.cs",
               "DocumentMoniker": "C:\\Users\\2224096\\OneDrive - Escola Digital\\Documentos\\GitHub\\trabalho-escoladigital\\Projeto Final\\Mercadono\\Form2.cs",
               "RelativeDocumentMoniker": "Form2.cs",
@@ -389,24 +392,25 @@
               "RelativeToolTip": "Form2.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-19T07:49:09.474Z"
+              "WhenOpened": "2026-05-19T07:49:09.474Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 6,
               "Title": "Form1.cs",
               "DocumentMoniker": "C:\\Users\\2224096\\OneDrive - Escola Digital\\Documentos\\GitHub\\trabalho-escoladigital\\Projeto Final\\Mercadono\\Form1.cs",
               "RelativeDocumentMoniker": "Form1.cs",
-              "ToolTip": "C:\\Users\\2224096\\OneDrive - Escola Digital\\Documentos\\GitHub\\trabalho-escoladigital\\Projeto Final\\Mercadono\\Form1.cs*",
-              "RelativeToolTip": "Form1.cs*",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYBAABQAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\2224096\\OneDrive - Escola Digital\\Documentos\\GitHub\\trabalho-escoladigital\\Projeto Final\\Mercadono\\Form1.cs",
+              "RelativeToolTip": "Form1.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACcAAAAfAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-05-12T09:13:20.211Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 22,
               "Title": "ajuda ao cliente.cs",
               "DocumentMoniker": "C:\\Users\\2224096\\OneDrive - Escola Digital\\Documentos\\GitHub\\trabalho-escoladigital\\Projeto Final\\Mercadono\\ajuda ao cliente.cs",
               "RelativeDocumentMoniker": "ajuda ao cliente.cs",
@@ -418,7 +422,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 16,
               "Title": "interface principal.cs",
               "DocumentMoniker": "C:\\Users\\2224096\\OneDrive - Escola Digital\\Documentos\\GitHub\\trabalho-escoladigital\\Projeto Final\\Mercadono\\interface principal.cs",
               "RelativeDocumentMoniker": "interface principal.cs",
@@ -426,7 +430,8 @@
               "RelativeToolTip": "interface principal.cs",
               "ViewState": "AgIAACoAAAAAAAAAAAAAABsAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-07T07:57:11.385Z"
+              "WhenOpened": "2026-05-07T07:57:11.385Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -438,11 +443,12 @@
               "RelativeToolTip": "interface principal.Designer.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAHIAAABAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-07T07:55:42.786Z"
+              "WhenOpened": "2026-05-07T07:55:42.786Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 8,
               "Title": "Form1.Designer.cs",
               "DocumentMoniker": "C:\\Users\\2224096\\OneDrive - Escola Digital\\Documentos\\GitHub\\trabalho-escoladigital\\Projeto Final\\Mercadono\\Form1.Designer.cs",
               "RelativeDocumentMoniker": "Form1.Designer.cs",
@@ -450,7 +456,8 @@
               "RelativeToolTip": "Form1.Designer.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAANQAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-07T07:55:39.817Z"
+              "WhenOpened": "2026-05-07T07:55:39.817Z",
+              "EditorCaption": ""
             }
           ]
         }
