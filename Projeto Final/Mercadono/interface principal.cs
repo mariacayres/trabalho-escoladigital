@@ -1,76 +1,400 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Mercadono
 {
     public partial class interface_principal : Form
     {
-        // Constructor: ensure designer controls are initialized
+        private readonly string connectionString = @"Server=(localdb)\MSSQLLocalDB;Database=mercadono;Integrated Security=True;";
+        private Label lblTotal;
+
         public interface_principal()
         {
             InitializeComponent();
+
+            // Ensure background picture is behind dynamic controls
+            try { this.pictureBox1?.SendToBack(); } catch { }
+
+            // Wire existing button1 as "Comprar" defensively (unsubscribe then subscribe)
+            if (this.button1 != null)
+            {
+                this.button1.Text = "COMPRAR";
+                this.button1.BackColor = Color.LightGreen;
+                this.button1.Font = new Font("Arial", 12, FontStyle.Bold);
+                this.button1.Size = new Size(150, 40);
+
+                // BOTÃO NO CANTO INFERIOR ESQUERDO
+                this.button1.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+                this.button1.Location = new Point(20, this.ClientSize.Height - 60);
+
+                // Prevent duplicate subscriptions which cause duplicated behavior/errors
+                this.button1.Click -= button1_Click;
+                this.button1.Click += button1_Click;
+            }
+
+            // Ajustar o formulário para redimensionar
+            this.Resize += (s, e) => {
+                if (this.button1 != null)
+                {
+                    this.button1.Location = new Point(20, this.ClientSize.Height - 60);
+                }
+                if (lblTotal != null)
+                {
+                    lblTotal.Location = new Point(20, this.ClientSize.Height - 110);
+                }
+            };
+
+            // Call CarregarProdutos once now (avoid attaching multiple Load handlers)
+            CarregarProdutos();
         }
 
-        protected override void OnLoad(EventArgs e)
+        private void CarregarProdutos()
         {
-            base.OnLoad(e);
+            try
+            {
+                // Remove previous dynamic checkboxes and previous lblTotal if present
+                for (int i = this.Controls.Count - 1; i >= 0; i--)
+                {
+                    var c = this.Controls[i];
+                    if (c is CheckBox chk && chk.Name.StartsWith("chk"))
+                    {
+                        this.Controls.RemoveAt(i);
+                    }
+                    else if (c is Label lbl && lbl.Name == "lblTotal")
+                    {
+                        this.Controls.RemoveAt(i);
+                    }
+                }
+
+                DataTable dt = BuscarProdutosEmEstoque();
+
+                if (dt == null || dt.Rows.Count == 0)
+                {
+                    MessageBox.Show("Nenhum produto encontrado!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                this.SuspendLayout();
+
+                int y = 50;
+                const int x = 20;
+
+                foreach (DataRow row in dt.Rows)
+                {
+                    int idProduto = Convert.ToInt32(row["idproduto"]);
+                    string nome = row["Produto"]?.ToString() ?? "";
+                    decimal preco = ParseDecimalSafe(row["Preço"]);
+                    decimal desconto = ParseDecimalSafe(row["Desconto"]);
+                    int estoque = Convert.ToInt32(row["Estoque_Disponível"] ?? 0);
+
+                    CheckBox chk = new CheckBox
+                    {
+                        Name = $"chk{idProduto}",
+                        Text = $"{idProduto} - {nome} | Preço: {preco:C2} | Desconto: {desconto}% | Estoque: {estoque}",
+                        Location = new Point(x, y),
+                        Size = new Size(Math.Max(700, this.ClientSize.Width - 40), 30),
+                        Font = new Font("Arial", 10),
+                        Tag = row,
+                        AutoSize = false
+                    };
+                    chk.CheckedChanged += Chk_CheckedChanged;
+
+                    if (estoque == 0)
+                    {
+                        chk.Enabled = false;
+                        chk.Text += " (SEM ESTOQUE)";
+                    }
+
+                    this.Controls.Add(chk);
+                    y += 35;
+                }
+
+                // Label do total (posicionado acima do botão)
+                lblTotal = new Label
+                {
+                    Name = "lblTotal",
+                    Text = "Total: R$ 0,00",
+                    Location = new Point(20, this.ClientSize.Height - 110),
+                    Size = new Size(400, 30),
+                    Font = new Font("Arial", 12, FontStyle.Bold),
+                    ForeColor = Color.DarkGreen,
+                    Anchor = AnchorStyles.Bottom | AnchorStyles.Left
+                };
+                this.Controls.Add(lblTotal);
+
+                TryBringDynamicControlsToFront();
+                this.ResumeLayout();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao carregar produtos: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private static decimal ParseDecimalSafe(object value)
+        {
+            if (value == null || value == DBNull.Value) return 0m;
+            if (value is decimal d) return d;
+            var s = value.ToString();
+            decimal.TryParse(s, NumberStyles.Any, CultureInfo.InvariantCulture, out d);
+            if (d == 0m)
+                decimal.TryParse(s, NumberStyles.Any, CultureInfo.CurrentCulture, out d);
+            return d;
+        }
+
+        private void Chk_CheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                decimal total = 0;
+                int count = 0;
+
+                foreach (Control ctrl in this.Controls)
+                {
+                    if (ctrl is CheckBox chk && chk.Checked && chk.Tag is DataRow row)
+                    {
+                        decimal preco = ParseDecimalSafe(row["Preço"]);
+                        decimal desconto = ParseDecimalSafe(row["Desconto"]);
+                        decimal precoComDesconto = preco * (1 - desconto / 100m);
+                        total += precoComDesconto;
+                        count++;
+                    }
+                }
+
+                if (lblTotal != null)
+                {
+                    lblTotal.Text = $"Total: {total:C2} | Itens: {count}";
+                }
+            }
+            catch { }
+        }
+
+        private void TryBringDynamicControlsToFront()
+        {
+            try
+            {
+                lblTotal?.BringToFront();
+                foreach (var chk in this.Controls.OfType<CheckBox>().Where(c => c.Name.StartsWith("chk")))
+                    chk.BringToFront();
+                this.button1?.BringToFront();
+            }
+            catch { }
+        }
+
+        // ============================================================
+        // BOTÃO COMPRAR
+        // ============================================================
+        private void button1_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("BOTÃO FUNCIONANDO!", "TESTE", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             try
             {
-                if (this.pictureBox1 == null) return;
+                int idCliente = 0;
+                try { idCliente = Session.LoggedUserId; } catch { }
 
-                // If an image exists, size the form and picture box to the image (clamped to working area).
-                if (this.pictureBox1.Image != null)
+                if (idCliente <= 0)
                 {
-                    var imgSize = this.pictureBox1.Image.Size;
-                    var wa = Screen.FromControl(this).WorkingArea;
-                    var target = new Size(
-                        Math.Min(imgSize.Width, wa.Width),
-                        Math.Min(imgSize.Height, wa.Height)
-                    );
-
-                    // Ensure picture box is placed at the client origin and displays the image at native size
-                    this.pictureBox1.Location = new Point(0, 0);
-                    this.pictureBox1.SizeMode = PictureBoxSizeMode.Normal;
-                    this.pictureBox1.Size = target;
-
-                    // Make the form client area match the image size
-                    this.ClientSize = target;
+                    MessageBox.Show("Faça login novamente.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
                 }
-                else
+
+                var selecionados = this.Controls
+                    .OfType<CheckBox>()
+                    .Where(chk => chk.Checked && chk.Tag is DataRow)
+                    .Select(chk => (Check: chk, Row: (DataRow)chk.Tag))
+                    .ToList();
+
+                if (selecionados.Count == 0)
                 {
-                    // No image: ensure picture is aligned and form matches the control size
-                    this.pictureBox1.Location = Point.Empty;
-                    this.ClientSize = this.pictureBox1.Size;
+                    MessageBox.Show("Selecione pelo menos um produto.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                string mensagem = "ITENS SELECIONADOS:\n\n";
+                decimal totalGeral = 0;
+
+                foreach (var item in selecionados)
+                {
+                    DataRow row = item.Row;
+                    string nome = row["Produto"]?.ToString() ?? "";
+                    decimal preco = ParseDecimalSafe(row["Preço"]);
+                    decimal desconto = ParseDecimalSafe(row["Desconto"]);
+                    int estoque = Convert.ToInt32(row["Estoque_Disponível"] ?? 0);
+
+                    if (estoque <= 0)
+                    {
+                        MessageBox.Show($"Produto {nome} sem estoque!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
+                    decimal precoComDesconto = preco * (1 - desconto / 100m);
+                    mensagem += $"• {nome} = {precoComDesconto:C2}";
+                    if (desconto > 0) mensagem += $" (desconto: {desconto}%)";
+                    mensagem += "\n";
+                    totalGeral += precoComDesconto;
+                }
+
+                mensagem += $"\nTOTAL: {totalGeral:C2}\n\nConfirmar compra?";
+
+                if (MessageBox.Show(mensagem, "CONFIRMAR COMPRA", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes) return;
+
+                bool tudoOk = true;
+
+                foreach (var item in selecionados)
+                {
+                    DataRow row = item.Row;
+                    int idProduto = Convert.ToInt32(row["idproduto"]);
+                    decimal preco = ParseDecimalSafe(row["Preço"]);
+                    decimal desconto = ParseDecimalSafe(row["Desconto"]);
+                    decimal precoComDesconto = preco * (1 - desconto / 100m);
+
+                    bool ok = InserirCompra(idCliente, idProduto, 1, precoComDesconto);
+                    if (!ok)
+                    {
+                        tudoOk = false;
+                        MessageBox.Show($"Erro ao comprar {row["Produto"]}.", "ERRO", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+
+                if (tudoOk)
+                {
+                    MessageBox.Show("COMPRA REALIZADA COM SUCESSO!", "SUCESSO", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    foreach (var chk in this.Controls.OfType<CheckBox>().Where(c => c.Name.StartsWith("chk")).ToList())
+                        chk.Checked = false;
+
+                    CarregarProdutos();
                 }
             }
-            catch
+            catch (Exception ex)
             {
-                // Fail silently to avoid preventing the form from showing.
+                MessageBox.Show("Erro: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
+        // ============================================================
+        // DATABASE HELPERS
+        // ============================================================
 
-        private void pictureBox1_Click(object sender, EventArgs e)
+        public DataTable BuscarProdutosEmEstoque()
         {
-            // Optional: custom click behavior for the picture.
-            // Example: close on Ctrl+click:
-            if ((Control.ModifierKeys & Keys.Control) == Keys.Control)
+            try
             {
-                this.Close();
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    string query = @"
+                        SELECT 
+                            p.idproduto,
+                            p.nomepd AS Produto,
+                            e.quantidade_estoque AS [Estoque_Disponível],
+                            p.precopd AS [Preço],
+                            p.descontopd AS [Desconto]
+                        FROM ProdutoTbl p
+                        INNER JOIN estoqueTbl e ON p.idproduto = e.idproduto
+                        ORDER BY p.idproduto";
+
+                    SqlDataAdapter da = new SqlDataAdapter(query, conn);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+                    return dt;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao buscar produtos: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return new DataTable();
             }
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        public bool InserirCompra(int idCliente, int idProduto, int quantidade, decimal valorFinal)
         {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
 
+                    using (SqlTransaction transaction = conn.BeginTransaction())
+                    {
+                        try
+                        {
+                            string checkEstoque = "SELECT quantidade_estoque FROM estoqueTbl WITH (UPDLOCK) WHERE idproduto = @idProduto";
+                            SqlCommand checkCmd = new SqlCommand(checkEstoque, conn, transaction);
+                            checkCmd.Parameters.AddWithValue("@idProduto", idProduto);
+
+                            object result = checkCmd.ExecuteScalar();
+                            int estoqueAtual = result == null ? 0 : Convert.ToInt32(result);
+
+                            if (estoqueAtual < quantidade)
+                            {
+                                transaction.Rollback();
+                                return false;
+                            }
+
+                            string query = @"
+                                INSERT INTO compraTbl (idcliente, id_produto, quantidade, valorfinal, data_compra)
+                                VALUES (@idCliente, @idProduto, @quantidade, @valorFinal, GETDATE())";
+
+                            SqlCommand cmd = new SqlCommand(query, conn, transaction);
+                            cmd.Parameters.AddWithValue("@idCliente", idCliente);
+                            cmd.Parameters.AddWithValue("@idProduto", idProduto);
+                            cmd.Parameters.AddWithValue("@quantidade", quantidade);
+                            cmd.Parameters.AddWithValue("@valorFinal", valorFinal);
+
+                            int rows = cmd.ExecuteNonQuery();
+
+                            if (rows > 0)
+                            {
+                                string updateEstoque = @"
+                                    UPDATE estoqueTbl 
+                                    SET quantidade_estoque = quantidade_estoque - @quantidade,
+                                        ultima_atualizacao = GETDATE()
+                                    WHERE idproduto = @idProduto";
+
+                                SqlCommand cmdEstoque = new SqlCommand(updateEstoque, conn, transaction);
+                                cmdEstoque.Parameters.AddWithValue("@quantidade", quantidade);
+                                cmdEstoque.Parameters.AddWithValue("@idProduto", idProduto);
+                                cmdEstoque.ExecuteNonQuery();
+
+                                string updateProduto = @"
+                                    UPDATE ProdutoTbl 
+                                    SET quantidadepd = quantidadepd - @quantidade
+                                    WHERE idproduto = @idProduto";
+
+                                SqlCommand cmdProduto = new SqlCommand(updateProduto, conn, transaction);
+                                cmdProduto.Parameters.AddWithValue("@quantidade", quantidade);
+                                cmdProduto.Parameters.AddWithValue("@idProduto", idProduto);
+                                cmdProduto.ExecuteNonQuery();
+
+                                transaction.Commit();
+                                return true;
+                            }
+                            else
+                            {
+                                transaction.Rollback();
+                                return false;
+                            }
+                        }
+                        catch
+                        {
+                            transaction.Rollback();
+                            throw;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao inserir compra: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
         }
     }
 }

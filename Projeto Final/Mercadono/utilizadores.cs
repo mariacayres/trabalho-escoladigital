@@ -36,7 +36,7 @@ namespace Mercadono
         // Botão 3 - Abre o Form de Estoque (estoque.cs)
         private void button3_Click(object sender, EventArgs e)
         {
-            estoque formEstoque = new estoque();
+            compras formEstoque = new compras();
             formEstoque.Show();
             this.Hide();
         }
@@ -48,14 +48,7 @@ namespace Mercadono
             formUtilizadores.Show();
             this.Hide();
         }
-
-        // Botão 5 - Abre o Form de Ajuda ao Cliente (ajuda ao cliente.cs)
-        private void button5_Click(object sender, EventArgs e)
-        {
-            ajuda_ao_cliente formAjuda = new ajuda_ao_cliente();
-            formAjuda.Show();
-            this.Hide();
-        }
+        
 
         private void button2_Click_1(object sender, EventArgs e)
         {

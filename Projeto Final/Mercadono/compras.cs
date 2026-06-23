@@ -1,20 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Mercadono
 {
-    public partial class ajuda_cliente_admin : Form
+    public partial class compras : Form
     {
-        public ajuda_cliente_admin()
+        public compras()
         {
-             InitializeComponent();
+            InitializeComponent();
         }
 
         // Botão 1 - Abre o Form1 (Form1.cs)
@@ -33,10 +26,10 @@ namespace Mercadono
             this.Hide();
         }
 
-        // Botão 3 - Abre o Form de Estoque (estoque.cs)
+        // Botão 3 - Abre o próprio Form de Estoque (estoque.cs)
         private void button3_Click(object sender, EventArgs e)
         {
-            estoque formEstoque = new estoque();
+            compras formEstoque = new compras();
             formEstoque.Show();
             this.Hide();
         }
@@ -47,19 +40,6 @@ namespace Mercadono
             utilizadores formUtilizadores = new utilizadores();
             formUtilizadores.Show();
             this.Hide();
-        }
-
-        // Botão 5 - Abre o próprio Form de Ajuda ao Cliente Admin
-        private void button5_Click(object sender, EventArgs e)
-        {
-            ajuda_cliente_admin formAjuda = new ajuda_cliente_admin();
-            formAjuda.Show();
-            this.Hide();
-        }
-
-        private void button2_Click_1(object sender, EventArgs e)
-        {
-
         }
     }
 }

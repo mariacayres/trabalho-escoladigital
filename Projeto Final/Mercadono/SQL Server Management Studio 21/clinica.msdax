@@ -1,0 +1,61 @@
+-- Tabela: distritos
+CREATE TABLE distritos (
+    id_distritos INT NOT NULL PRIMARY KEY,
+    distrito NVARCHAR NOT NULL
+);
+
+-- Tabela: especialidades
+CREATE TABLE especialidades (
+    id_especialidade INT NOT NULL PRIMARY KEY,
+    especialidade NVARCHAR NOT NULL
+);
+
+-- Tabela: médicos
+CREATE TABLE medicos (
+    id_medicos INT NOT NULL PRIMARY KEY,
+    nome NVARCHAR NOT NULL,
+    morada NVARCHAR NOT NULL,
+    id_distrito INT NOT NULL,
+    telefone INT NOT NULL,
+    data_nascimento DATE NOT NULL,
+    especialidade NVARCHAR NOT NULL,
+    FOREIGN KEY (id_distrito) REFERENCES distritos(id_distritos)
+);
+
+-- Tabela: cliente
+CREATE TABLE cliente (
+    id_cliente INT NOT NULL PRIMARY KEY,
+    id_consulta INT NOT NULL,
+    nome NVARCHAR NOT NULL,
+    telefone INT NOT NULL,
+    data_nascimento DATE NOT NULL,
+    morada NVARCHAR NOT NULL,
+    id_distrito INT NOT NULL,
+    FOREIGN KEY (id_distrito) REFERENCES distritos(id_distritos)
+);
+
+-- Tabela: consulta
+CREATE TABLE consulta (
+    id_consulta INT NOT NULL PRIMARY KEY,
+    id_medico INT NOT NULL,
+    id_cliente INT NOT NULL,
+    data DATE NOT NULL,
+    FOREIGN KEY (id_medico) REFERENCES medicos(id_medicos),
+    FOREIGN KEY (id_cliente) REFERENCES cliente(id_cliente)
+);
+
+-- Tabela: medicamento
+CREATE TABLE medicamento (
+    id_medicamentos INT NOT NULL PRIMARY KEY,
+    designacao NVARCHAR NOT NULL
+);
+
+-- Tabela: detalhes_da_consulta
+CREATE TABLE detalhes_da_consulta (
+    id_consulta INT NOT NULL,
+    id_medicamento INT NOT NULL,
+    quantidade INT NOT NULL,
+    PRIMARY KEY (id_consulta, id_medicamento),
+    FOREIGN KEY (id_consulta) REFERENCES consulta(id_consulta),
+    FOREIGN KEY (id_medicamento) REFERENCES medicamento(id_medicamentos)
+);

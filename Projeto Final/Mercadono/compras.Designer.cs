@@ -1,6 +1,6 @@
 ﻿namespace Mercadono
 {
-    partial class estoque
+    partial class compras
     {
         /// <summary>
         /// Required designer variable.
@@ -34,7 +34,6 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -46,7 +45,7 @@
             // 
             this.pictureBox1.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.pictureBox1.Image = global::Mercadono.Properties.Resources.Design_sem_nome__1_;
-            this.pictureBox1.Location = new System.Drawing.Point(-6, 0);
+            this.pictureBox1.Location = new System.Drawing.Point(12, -15);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(1140, 634);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -79,7 +78,7 @@
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(163, 27);
             this.button2.TabIndex = 3;
-            this.button2.Text = "descontos";
+            this.button2.Text = "compras";
             this.button2.UseVisualStyleBackColor = true;
             // 
             // button3
@@ -100,16 +99,6 @@
             this.button4.Text = "utilizadores";
             this.button4.UseVisualStyleBackColor = true;
             // 
-            // button6
-            // 
-            this.button6.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button6.Location = new System.Drawing.Point(22, 250);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(163, 27);
-            this.button6.TabIndex = 6;
-            this.button6.Text = "ajuda ao cliente";
-            this.button6.UseVisualStyleBackColor = false;
-            // 
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -125,25 +114,24 @@
             this.label1.Font = new System.Drawing.Font("Lucida Sans Typewriter", 21.75F);
             this.label1.Location = new System.Drawing.Point(234, 109);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(287, 33);
+            this.label1.Size = new System.Drawing.Size(134, 33);
             this.label1.TabIndex = 8;
-            this.label1.Text = "ajuda ao cliente";
+            this.label1.Text = "compras";
             // 
-            // estoque
+            // compras
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1134, 631);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.button6);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.pictureBox1);
-            this.Name = "estoque";
+            this.Name = "compras";
             this.Text = "interface_principal";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
@@ -161,7 +149,6 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button6;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Label label1;
     }

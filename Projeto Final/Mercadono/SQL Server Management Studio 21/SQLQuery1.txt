@@ -1,0 +1,283 @@
+/* ============================================================
+   Autor: maria cayres
+   ============================================================ */
+
+USE master;
+GO
+
+IF DB_ID('clinica_expandida') IS NOT NULL
+BEGIN
+    ALTER DATABASE clinica_expandida SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
+    DROP DATABASE clinica_expandida;
+END;
+GO
+
+-- Cria nova base
+CREATE DATABASE clinica_expandida;
+GO
+USE clinica_expandida;
+GO
+
+IF OBJECT_ID('medicamentos_prescritos', 'U') IS NOT NULL DROP TABLE medicamentos_prescritos;
+IF OBJECT_ID('consultas', 'U') IS NOT NULL DROP TABLE consultas;
+IF OBJECT_ID('medicamentos', 'U') IS NOT NULL DROP TABLE medicamentos;
+IF OBJECT_ID('pacientes', 'U') IS NOT NULL DROP TABLE pacientes;
+IF OBJECT_ID('medicos', 'U') IS NOT NULL DROP TABLE medicos;
+IF OBJECT_ID('especialidades', 'U') IS NOT NULL DROP TABLE especialidades;
+IF OBJECT_ID('distritos', 'U') IS NOT NULL DROP TABLE distritos;
+GO
+
+
+CREATE TABLE distritos (
+    id_distrito INT IDENTITY(1,1) PRIMARY KEY,
+    nome NVARCHAR(100) NOT NULL
+);
+
+CREATE TABLE especialidades (
+    id_especialidade INT IDENTITY(1,1) PRIMARY KEY,
+    descricao NVARCHAR(100) NOT NULL
+);
+
+CREATE TABLE medicos (
+    id_medico INT IDENTITY(1,1) PRIMARY KEY,
+    nome NVARCHAR(120) NOT NULL,
+    morada NVARCHAR(200),
+    telefone CHAR(9),
+    nif CHAR(9) NOT NULL,
+    id_distrito INT NOT NULL,
+    id_especialidade INT NOT NULL,
+    CONSTRAINT FK_medico_distrito FOREIGN KEY (id_distrito) REFERENCES distritos(id_distrito),
+    CONSTRAINT FK_medico_especialidade FOREIGN KEY (id_especialidade) REFERENCES especialidades(id_especialidade)
+);
+
+CREATE TABLE pacientes (
+    id_paciente INT IDENTITY(1,1) PRIMARY KEY,
+    num_beneficiario INT NOT NULL,
+    nome NVARCHAR(120) NOT NULL,
+    telefone CHAR(9),
+    morada NVARCHAR(200),
+    id_distrito INT NOT NULL,
+    data_nascimento DATE,
+    CONSTRAINT FK_paciente_distrito FOREIGN KEY (id_distrito) REFERENCES distritos(id_distrito)
+);
+
+CREATE TABLE consultas (
+    id_consulta INT IDENTITY(1,1) PRIMARY KEY,
+    id_medico INT NOT NULL,
+    id_paciente INT NOT NULL,
+    data DATE NOT NULL,
+    hora TIME NOT NULL,
+    CONSTRAINT FK_consulta_medico FOREIGN KEY (id_medico) REFERENCES medicos(id_medico),
+    CONSTRAINT FK_consulta_paciente FOREIGN KEY (id_paciente) REFERENCES pacientes(id_paciente)
+);
+
+CREATE TABLE medicamentos (
+    id_medicamento INT IDENTITY(1,1) PRIMARY KEY,
+    designacao NVARCHAR(100) NOT NULL
+);
+
+CREATE TABLE medicamentos_prescritos (
+    id_consulta INT NOT NULL,
+    id_medicamento INT NOT NULL,
+    quantidade INT NOT NULL,
+    CONSTRAINT PK_medicamentos_prescritos PRIMARY KEY (id_consulta, id_medicamento),
+    CONSTRAINT FK_mp_consulta FOREIGN KEY (id_consulta)
+        REFERENCES consultas(id_consulta) ON DELETE CASCADE,
+    CONSTRAINT FK_mp_medicamento FOREIGN KEY (id_medicamento)
+        REFERENCES medicamentos(id_medicamento) ON DELETE CASCADE
+);
+GO
+
+
+INSERT INTO distritos (nome)
+VALUES ('Lisboa'), ('Porto'), ('Coimbra'), ('Braga'), ('Faro');
+
+INSERT INTO especialidades (descricao)
+VALUES ('Cardiologia'), ('Ortopedia'), ('Dermatologia'),
+       ('Pediatria'), ('Medicina Geral e Familiar'),
+       ('Neurologia'), ('Oftalmologia'), ('Ginecologia');
+
+INSERT INTO medicamentos (designacao)
+VALUES ('Paracetamol 500mg'),
+       ('Ibuprofeno 400mg'),
+       ('ritalina 20mg'),
+       ('Vitamina C 1g'),
+       ('Omeprazol 20mg'),
+       ('Loratadina 10mg'),
+       ('Simvastatina 20mg'),
+       ('Aspirina 100mg');
+GO
+
+
+DECLARE @i INT = 1;
+WHILE @i <= 20
+BEGIN
+    INSERT INTO medicos (nome, morada, telefone, nif, id_distrito, id_especialidade)
+    VALUES (
+        CONCAT('Dr. Médico ', @i),
+        CONCAT('Rua dos Médicos ', @i),
+        RIGHT('9' + REPLICATE('0', 8 - LEN(@i)) + CAST(@i AS NVARCHAR(8)), 9),
+        RIGHT('2' + REPLICATE('0', 8 - LEN(@i)) + CAST(@i AS NVARCHAR(8)), 9),
+        ((@i - 1) % 5) + 1,             -- distritos 1..5
+        ((@i - 1) % 8) + 1              -- especialidades 1..8
+    );
+    SET @i += 1;
+END;
+GO
+
+
+DECLARE @i INT = 1;
+WHILE @i <= 100
+BEGIN
+    INSERT INTO pacientes (num_beneficiario, nome, telefone, morada, id_distrito, data_nascimento)
+    VALUES (
+        100000 + @i,
+        CONCAT('Paciente ', @i),
+        RIGHT('9' + REPLICATE('1', 8 - LEN(@i)) + CAST(@i AS NVARCHAR(8)), 9),
+        CONCAT('Rua dos Pacientes ', @i),
+        ((@i - 1) % 5) + 1,
+        DATEADD(DAY, -1 * (ABS(CHECKSUM(NEWID())) % 15000), GETDATE())
+    );
+    SET @i += 1;
+END;
+GO
+
+
+DECLARE @dataInicial DATE = '2025-09-01';
+DECLARE @contador INT = 1;
+WHILE @contador <= 50
+BEGIN
+    DECLARE @idMed INT = (ABS(CHECKSUM(NEWID())) % 20) + 1;
+    DECLARE @idPac INT = (ABS(CHECKSUM(NEWID())) % 100) + 1;
+
+    INSERT INTO consultas (id_medico, id_paciente, data, hora)
+    VALUES (
+        @idMed,
+        @idPac,
+        DATEADD(DAY, @contador, @dataInicial),
+        DATEADD(MINUTE, (ABS(CHECKSUM(NEWID())) % 480), CAST('08:00' AS TIME))
+    );
+
+    SET @contador += 1;
+END;
+GO
+
+
+DECLARE @id INT = 1;
+DECLARE @numPresc INT;
+DECLARE @maxMedic INT = (SELECT COUNT(*) FROM medicamentos);
+DECLARE @idConsulta INT;
+
+WHILE @id <= 50
+BEGIN
+    SET @idConsulta = @id;
+    SET @numPresc = (ABS(CHECKSUM(NEWID())) % 3) + 1;  -- 1..3 medicamentos por consulta
+
+    ;WITH rnd AS (
+        SELECT TOP (@numPresc)
+               ((ABS(CHECKSUM(NEWID())) % @maxMedic) + 1) AS id_medicamento,
+               ((ABS(CHECKSUM(NEWID())) % 3) + 1) AS quantidade
+        FROM sys.objects
+    )
+    INSERT INTO medicamentos_prescritos (id_consulta, id_medicamento, quantidade)
+    SELECT @idConsulta, id_medicamento, quantidade FROM rnd;
+
+    SET @id += 1;
+END;
+GO
+
+
+SELECT COUNT(*) AS [Médicos] FROM medicos;
+SELECT COUNT(*) AS [Pacientes] FROM pacientes;
+SELECT COUNT(*) AS [Consultas] FROM consultas;
+SELECT COUNT(*) AS [Prescrições] FROM medicamentos_prescritos;
+GO
+
+PRINT '=== 1. PACIENTES COM CONSULTAS EM CARDIOLOGIA ==='
+SELECT DISTINCT 
+    p.id_paciente,
+    p.nome AS nome_paciente,
+    p.telefone,
+    m.nome AS nome_medico,
+    e.descricao AS especialidade
+FROM pacientes p
+INNER JOIN consultas c ON p.id_paciente = c.id_paciente
+INNER JOIN medicos m ON c.id_medico = m.id_medico
+INNER JOIN especialidades e ON m.id_especialidade = e.id_especialidade
+WHERE e.descricao = 'Cardiologia'
+ORDER BY p.nome;
+GO
+
+PRINT '=== 2. MEDICAMENTOS PRESCRITOS COM QUANTIDADE ACIMA DA MÉDIA ==='
+WITH media_global AS (
+    SELECT AVG(quantidade) AS media_quantidade
+    FROM medicamentos_prescritos
+),
+consultas_acima_media AS (
+    SELECT 
+        mp.id_consulta,
+        SUM(mp.quantidade) AS quantidade_total
+    FROM medicamentos_prescritos mp
+    GROUP BY mp.id_consulta
+    HAVING SUM(mp.quantidade) > (SELECT media_quantidade FROM media_global)
+)
+SELECT 
+    c.id_consulta,
+    c.data,
+    c.hora,
+    med.nome AS medico,
+    pac.nome AS paciente,
+    m.designacao AS medicamento,
+    mp.quantidade,
+    cam.quantidade_total
+FROM consultas c
+INNER JOIN consultas_acima_media cam ON c.id_consulta = cam.id_consulta
+INNER JOIN medicamentos_prescritos mp ON c.id_consulta = mp.id_consulta
+INNER JOIN medicamentos m ON mp.id_medicamento = m.id_medicamento
+INNER JOIN medicos med ON c.id_medico = med.id_medico
+INNER JOIN pacientes pac ON c.id_paciente = pac.id_paciente
+ORDER BY cam.quantidade_total DESC, c.id_consulta;
+GO
+
+PRINT '=== 3. MÉDICOS QUE NUNCA REALIZARAM CONSULTA (NOT IN) ==='
+SELECT 
+    m.id_medico,
+    m.nome AS nome_medico,
+    m.telefone,
+    e.descricao AS especialidade,
+    d.nome AS distrito
+FROM medicos m
+INNER JOIN especialidades e ON m.id_especialidade = e.id_especialidade
+INNER JOIN distritos d ON m.id_distrito = d.id_distrito
+WHERE m.id_medico NOT IN (
+    SELECT DISTINCT id_medico 
+    FROM consultas
+)
+ORDER BY m.nome;
+GO
+
+PRINT '=== 3A. MÉDICOS QUE NUNCA REALIZARAM CONSULTA (LEFT JOIN) ==='
+SELECT 
+    m.id_medico,
+    m.nome AS nome_medico,
+    m.telefone,
+    e.descricao AS especialidade,
+    d.nome AS distrito
+FROM medicos m
+INNER JOIN especialidades e ON m.id_especialidade = e.id_especialidade
+INNER JOIN distritos d ON m.id_distrito = d.id_distrito
+LEFT JOIN consultas c ON m.id_medico = c.id_medico
+WHERE c.id_consulta IS NULL
+ORDER BY m.nome;
+GO
+
+
+PRINT '=== BÔNUS: MÉDIAS GLOBAIS ==='
+SELECT 
+    AVG(quantidade) AS media_quantidade_por_prescricao,
+    (SELECT AVG(quantidade_total) 
+     FROM (SELECT SUM(quantidade) as quantidade_total 
+           FROM medicamentos_prescritos 
+           GROUP BY id_consulta) t) AS media_quantidade_por_consulta
+FROM medicamentos_prescritos;
+GO

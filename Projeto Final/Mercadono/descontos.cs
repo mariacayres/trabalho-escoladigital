@@ -52,10 +52,10 @@ namespace Mercadono
         // Botão 3 - Abre o Form de Estoque
         private void button3_Click(object sender, EventArgs e)
         {
-            estoque formEstoque = Application.OpenForms.OfType<estoque>().FirstOrDefault();
+            compras formEstoque = Application.OpenForms.OfType<compras>().FirstOrDefault();
             if (formEstoque == null)
             {
-                formEstoque = new estoque();
+                formEstoque = new compras();
                 formEstoque.Show();
             }
             else
@@ -77,22 +77,6 @@ namespace Mercadono
             else
             {
                 formUtilizadores.BringToFront();
-            }
-            this.Hide();
-        }
-
-        // Botão 5 - Abre o Form de Ajuda ao Cliente
-        private void button5_Click(object sender, EventArgs e)
-        {
-            ajuda_ao_cliente formAjuda = Application.OpenForms.OfType<ajuda_ao_cliente>().FirstOrDefault();
-            if (formAjuda == null)
-            {
-                formAjuda = new ajuda_ao_cliente();
-                formAjuda.Show();
-            }
-            else
-            {
-                formAjuda.BringToFront();
             }
             this.Hide();
         }

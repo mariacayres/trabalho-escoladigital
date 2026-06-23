@@ -50,18 +50,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ajuda ao cliente adimin.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ajuda ao cliente adimin.Designer.cs">
-      <DependentUpon>ajuda ao cliente adimin.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ajuda ao cliente.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ajuda ao cliente.Designer.cs">
-      <DependentUpon>ajuda ao cliente.cs</DependentUpon>
-    </Compile>
     <Compile Include="Session.cs" />
     <Compile Include="descontos.cs">
       <SubType>Form</SubType>
@@ -69,11 +57,11 @@
     <Compile Include="descontos.Designer.cs">
       <DependentUpon>descontos.cs</DependentUpon>
     </Compile>
-    <Compile Include="estoque.cs">
+    <Compile Include="compras.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="estoque.Designer.cs">
-      <DependentUpon>estoque.cs</DependentUpon>
+    <Compile Include="compras.Designer.cs">
+      <DependentUpon>compras.cs</DependentUpon>
     </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -111,17 +99,11 @@
     <Compile Include="utilizadores.Designer.cs">
       <DependentUpon>utilizadores.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="ajuda ao cliente adimin.resx">
-      <DependentUpon>ajuda ao cliente adimin.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ajuda ao cliente.resx">
-      <DependentUpon>ajuda ao cliente.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="descontos.resx">
       <DependentUpon>descontos.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="estoque.resx">
-      <DependentUpon>estoque.cs</DependentUpon>
+    <EmbeddedResource Include="compras.resx">
+      <DependentUpon>compras.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
@@ -179,6 +161,36 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Adicionar um título %281%29_page-0001.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="imagens\arroz.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="imagens\feijão.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="imagens\açucar.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="imagens\óleo.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="imagens\macarrão.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="imagens\leite.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="imagens\café.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="imagens\farinha.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="imagens\sabão em pó.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="imagens\detergente.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
