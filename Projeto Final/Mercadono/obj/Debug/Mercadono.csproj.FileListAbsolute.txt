@@ -13,7 +13,7 @@ C:\Users\2224096\OneDrive - Escola Digital\Documentos\GitHub\trabalho-escoladigi
 C:\Users\2224096\OneDrive - Escola Digital\Documentos\GitHub\trabalho-escoladigital\Projeto Final\Mercadono\obj\Debug\Mercadono.exe.config
 C:\Users\2224096\OneDrive - Escola Digital\Documentos\GitHub\trabalho-escoladigital\Projeto Final\Mercadono\obj\Debug\Mercadono.interface_principal.resources
 C:\Users\2224096\OneDrive - Escola Digital\Documentos\GitHub\trabalho-escoladigital\Projeto Final\Mercadono\obj\Debug\Mercadono.Form2.resources
-C:\Users\2224096\OneDrive - Escola Digital\Documentos\GitHub\trabalho-escoladigital\Projeto Final\Mercadono\obj\Debug\Mercadono.descontos.resources
 C:\Users\2224096\OneDrive - Escola Digital\Documentos\GitHub\trabalho-escoladigital\Projeto Final\Mercadono\obj\Debug\Mercadono.utilizadores.resources
 C:\Users\2224096\OneDrive - Escola Digital\Documentos\GitHub\trabalho-escoladigital\Projeto Final\Mercadono\obj\Debug\Mercadono.login.resources
 C:\Users\2224096\OneDrive - Escola Digital\Documentos\GitHub\trabalho-escoladigital\Projeto Final\Mercadono\obj\Debug\Mercadono.compras.resources
+C:\Users\2224096\OneDrive - Escola Digital\Documentos\GitHub\trabalho-escoladigital\Projeto Final\Mercadono\obj\Debug\Mercadono.estoque.resources

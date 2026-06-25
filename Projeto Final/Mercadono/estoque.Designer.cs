@@ -1,9 +1,16 @@
 ﻿namespace Mercadono
 {
-    partial class Form2
+    partial class estoque
     {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
         private System.ComponentModel.IContainer components = null;
 
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -13,6 +20,12 @@
             base.Dispose(disposing);
         }
 
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
@@ -28,105 +41,95 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
-            // label1 - "produtos"
+            // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Transparent; // Fundo transparente
+            this.label1.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.label1.Font = new System.Drawing.Font("Lucida Sans Typewriter", 21.75F);
-            this.label1.Location = new System.Drawing.Point(237, 131);
+            this.label1.Location = new System.Drawing.Point(244, 119);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(151, 33);
-            this.label1.TabIndex = 24;
-            this.label1.Text = "produtos";
+            this.label1.Size = new System.Drawing.Size(134, 33);
+            this.label1.TabIndex = 16;
+            this.label1.Text = "estoque";
             // 
-            // dataGridView1 - TABELA DE PRODUTOS
+            // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(243, 167);
+            this.dataGridView1.Location = new System.Drawing.Point(250, 161);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(636, 447);
-            this.dataGridView1.TabIndex = 23;
-            this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
-            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.MultiSelect = false;
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.RowHeadersVisible = false;
+            this.dataGridView1.Size = new System.Drawing.Size(815, 446);
+            this.dataGridView1.TabIndex = 15;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
-            // button4 - UTILIZADORES
+            // button4
             // 
-            this.button4.Location = new System.Drawing.Point(39, 230);
+            this.button4.Location = new System.Drawing.Point(32, 227);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(163, 27);
-            this.button4.TabIndex = 22;
+            this.button4.TabIndex = 14;
             this.button4.Text = "utilizadores";
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
-            // button3 - ESTOQUE
+            // button3
             // 
-            this.button3.Location = new System.Drawing.Point(39, 197);
+            this.button3.Location = new System.Drawing.Point(32, 194);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(163, 27);
-            this.button3.TabIndex = 21;
+            this.button3.TabIndex = 13;
             this.button3.Text = "estoque";
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
-            // button2 - COMPRAS
+            // button2
             // 
-            this.button2.Location = new System.Drawing.Point(39, 164);
+            this.button2.Location = new System.Drawing.Point(32, 161);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(163, 27);
-            this.button2.TabIndex = 20;
+            this.button2.TabIndex = 12;
             this.button2.Text = "compras";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // button1 - PRODUTOS (atualizar)
+            // button1
             // 
             this.button1.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.button1.Location = new System.Drawing.Point(39, 131);
+            this.button1.Location = new System.Drawing.Point(32, 128);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(163, 27);
-            this.button1.TabIndex = 19;
+            this.button1.TabIndex = 11;
             this.button1.Text = "produtos";
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // pictureBox2 - IMAGEM PEQUENA (por cima)
+            // pictureBox2
             // 
-            this.pictureBox2.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox2.Image = global::Mercadono.Properties.Resources.Adicionar_um_título__1__page_0001;
-            this.pictureBox2.Location = new System.Drawing.Point(22, 95);
+            this.pictureBox2.Location = new System.Drawing.Point(22, 100);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(343, 212);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox2.TabIndex = 18;
+            this.pictureBox2.TabIndex = 10;
             this.pictureBox2.TabStop = false;
             this.pictureBox2.Click += new System.EventHandler(this.pictureBox2_Click);
             // 
-            // pictureBox1 - IMAGEM DE FUNDO (TELA INTEIRA)
+            // pictureBox1
             // 
             this.pictureBox1.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;  // OCUPA A TELA TODA
             this.pictureBox1.Image = global::Mercadono.Properties.Resources.Design_sem_nome__1_;
-            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox1.Location = new System.Drawing.Point(-8, -5);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(917, 684);
+            this.pictureBox1.Size = new System.Drawing.Size(1140, 634);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 17;
+            this.pictureBox1.TabIndex = 9;
             this.pictureBox1.TabStop = false;
-            this.pictureBox1.SendToBack(); // Manda para trás
             this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
-            // Form2
+            // estoque
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(917, 684);
+            this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.button4);
@@ -135,8 +138,8 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.pictureBox1);
-            this.Name = "Form2";
-            this.Text = "Form2";
+            this.Name = "estoque";
+            this.Text = "estoque";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -145,6 +148,7 @@
 
         }
 
+        #endregion
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView dataGridView1;

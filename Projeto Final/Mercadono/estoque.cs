@@ -1,33 +1,24 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Mercadono
 {
-    public partial class utilizadores : Form
+    public partial class estoque : Form
     {
-
         private readonly string connectionString = @"Server=(localdb)\MSSQLLocalDB;Database=mercadono;Integrated Security=True;";
 
-        public utilizadores()
+        public estoque()
         {
             InitializeComponent();
-
-            // Carregar compras ao abrir o form
-            CarregarCompras();
+            CarregarEstoque();
         }
 
         // ============================================================
-        // CARREGAR COMPRAS NO DATAGRIDVIEW1
+        // CARREGAR ESTOQUE
         // ============================================================
-        private void CarregarCompras()
+        private void CarregarEstoque()
         {
             try
             {
@@ -36,16 +27,12 @@ namespace Mercadono
                     conn.Open();
                     string query = @"
                         SELECT 
-                            c.idcompra AS 'ID',
-                            u.nome AS 'Cliente',
+                            e.idestoque AS 'ID',
                             p.nomepd AS 'Produto',
-                            c.quantidade AS 'Qtd',
-                            c.valorfinal AS 'Valor Total',
-                            c.data_compra AS 'Data'
-                        FROM compraTbl c
-                        INNER JOIN utilizadorTbl u ON c.idcliente = u.id_cliente
-                        INNER JOIN ProdutoTbl p ON c.id_produto = p.idproduto
-                        ORDER BY c.data_compra DESC";
+                            e.quantidade_estoque AS 'Qtd'
+                        FROM estoqueTbl e
+                        INNER JOIN ProdutoTbl p ON e.idproduto = p.idproduto
+                        ORDER BY p.nomepd";
 
                     SqlDataAdapter da = new SqlDataAdapter(query, conn);
                     DataTable dt = new DataTable();
@@ -53,25 +40,30 @@ namespace Mercadono
 
                     dataGridView1.DataSource = dt;
 
-                    // Formatar colunas
-                    if (dataGridView1.Columns["Valor Total"] != null)
+                    // Ajustar tamanho das colunas
+                    if (dataGridView1.Columns["ID"] != null)
                     {
-                        dataGridView1.Columns["Valor Total"].DefaultCellStyle.Format = "C2";
+                        dataGridView1.Columns["ID"].Width = 60;
+                        dataGridView1.Columns["ID"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                     }
-                    if (dataGridView1.Columns["Data"] != null)
+                    if (dataGridView1.Columns["Produto"] != null)
                     {
-                        dataGridView1.Columns["Data"].DefaultCellStyle.Format = "dd/MM/yyyy HH:mm";
+                        dataGridView1.Columns["Produto"].Width = 200;
+                    }
+                    if (dataGridView1.Columns["Qtd"] != null)
+                    {
+                        dataGridView1.Columns["Qtd"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                     }
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Erro ao carregar compras: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Erro ao carregar estoque: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         // ============================================================
-        // DATAGRIDVIEW1 - CLICK (mostrar detalhes da compra)
+        // DATAGRIDVIEW1 - CLICK (mostrar detalhes)
         // ============================================================
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -79,21 +71,15 @@ namespace Mercadono
             {
                 DataGridViewRow row = dataGridView1.Rows[e.RowIndex];
                 string id = row.Cells["ID"].Value?.ToString() ?? "";
-                string cliente = row.Cells["Cliente"].Value?.ToString() ?? "";
                 string produto = row.Cells["Produto"].Value?.ToString() ?? "";
                 string qtd = row.Cells["Qtd"].Value?.ToString() ?? "";
-                string valor = row.Cells["Valor Total"].Value?.ToString() ?? "";
-                string data = row.Cells["Data"].Value?.ToString() ?? "";
 
                 MessageBox.Show(
-                    $"📋 DETALHES DA COMPRA\n\n" +
+                    $"📦 DETALHES DO ESTOQUE\n\n" +
                     $"ID: {id}\n" +
-                    $"Cliente: {cliente}\n" +
                     $"Produto: {produto}\n" +
-                    $"Quantidade: {qtd}\n" +
-                    $"Valor Total: {valor}\n" +
-                    $"Data: {data}",
-                    "Detalhes da Compra",
+                    $"Quantidade: {qtd}",
+                    "Detalhes do Estoque",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Information
                 );
@@ -112,24 +98,23 @@ namespace Mercadono
         }
 
         // ============================================================
-        // BOTÃO 2 - COMPRAS → compras.cs (próprio form)
+        // BOTÃO 2 - COMPRAS → compras.cs
         // ============================================================
         private void button2_Click(object sender, EventArgs e)
         {
-            // Já está no form de compras, só recarregar
-            CarregarCompras();
-            MessageBox.Show("Lista de compras atualizada!", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            compras formCompras = new compras();
+            formCompras.StartPosition = FormStartPosition.CenterScreen;
+            formCompras.Show();
+            this.Hide();
         }
 
         // ============================================================
-        // BOTÃO 3 - ESTOQUE → estoque.cs
+        // BOTÃO 3 - ESTOQUE → recarregar
         // ============================================================
         private void button3_Click(object sender, EventArgs e)
         {
-            estoque formEstoque = new estoque();
-            formEstoque.StartPosition = FormStartPosition.CenterScreen;
-            formEstoque.Show();
-            this.Hide();
+            CarregarEstoque();
+            MessageBox.Show("Estoque atualizado!", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         // ============================================================
@@ -144,12 +129,11 @@ namespace Mercadono
         }
 
         // ============================================================
-        // BOTÃO 5 - (IGNORADO/OCULTADO)
+        // BOTÃO 5 - IGNORADO
         // ============================================================
         private void button5_Click(object sender, EventArgs e)
         {
-            // Botão ignorado - ajuda ao cliente removida
-            MessageBox.Show("Esta funcionalidade foi removida.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("Funcionalidade removida.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         // ============================================================
@@ -160,5 +144,10 @@ namespace Mercadono
         private void pictureBox3_Click(object sender, EventArgs e) { }
         private void interface_principal_Load(object sender, EventArgs e) { }
         private void button1_Click_1(object sender, EventArgs e) { }
+        private void button2_Click_1(object sender, EventArgs e) { }
+        private void button3_Click_1(object sender, EventArgs e) { }
+        private void button4_Click_1(object sender, EventArgs e) { }
+        private void button5_Click_1(object sender, EventArgs e) { }
+        private void dataGridView1_CellContentClick_1(object sender, DataGridViewCellEventArgs e) { }
     }
 }
