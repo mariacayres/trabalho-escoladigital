@@ -11,7 +11,7 @@ namespace Mercadono
         // Ensure exactly one parameterless constructor exists across all partial class files
         // (usually the designer file contains the constructor calling InitializeComponent).
 
-        private void Interface_principal_Load(object sender, EventArgs e)
+        private void interface_principal_Load1(object sender, EventArgs e)
         {
             if (this.pictureBox1 != null)
             {

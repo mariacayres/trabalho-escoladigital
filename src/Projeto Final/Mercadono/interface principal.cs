@@ -13,44 +13,51 @@ namespace Mercadono
         private readonly string connectionString = @"Server=(localdb)\MSSQLLocalDB;Database=mercadono;Integrated Security=True;";
         private Label lblTotal;
         private Panel panelProdutos;
-        private bool isLoading = false; // Flag para evitar carregamento duplicado
-        private bool isFirstLoad = true;
+        private bool isCarregado = false;
 
         public interface_principal()
         {
             InitializeComponent();
+            InicializarControles();
 
-            // Configurar o formulário
-        }
-
-        private void interface_principal_Load(object sender, EventArgs e)
-        {
-            // Garantir que só carregue uma vez
-            if (isFirstLoad)
+            if (!isCarregado)
             {
-                isFirstLoad = false;
-
-                // Criar o panel e carregar produtos
-                InicializarControles();
+                isCarregado = true;
                 CarregarProdutos();
             }
         }
 
         private void InicializarControles()
         {
-            // Criar Panel para produtos
-            panelProdutos = new Panel
+            if (panelProdutos == null)
             {
-                Name = "panelProdutos",
-                Location = new Point(10, 10),
-                Size = new Size(this.ClientSize.Width - 20, this.ClientSize.Height - 150),
-                AutoScroll = true,
-                Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right,
-                BackColor = Color.Transparent
-            };
-            this.Controls.Add(panelProdutos);
+                panelProdutos = new Panel
+                {
+                    Name = "panelProdutos",
+                    Location = new Point(10, 10),
+                    Size = new Size(this.ClientSize.Width - 20, this.ClientSize.Height - 150),
+                    AutoScroll = true,
+                    Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right,
+                    BackColor = Color.Transparent
+                };
+                this.Controls.Add(panelProdutos);
+            }
 
-            // Configurar botão
+            if (lblTotal == null)
+            {
+                lblTotal = new Label
+                {
+                    Name = "lblTotal",
+                    Text = "Total: R$ 0,00",
+                    Location = new Point(20, this.ClientSize.Height - 110),
+                    Size = new Size(400, 30),
+                    Font = new Font("Arial", 12, FontStyle.Bold),
+                    ForeColor = Color.DarkGreen,
+                    Anchor = AnchorStyles.Bottom | AnchorStyles.Left
+                };
+                this.Controls.Add(lblTotal);
+            }
+
             if (this.button1 != null)
             {
                 this.button1.Text = "COMPRAR";
@@ -59,33 +66,15 @@ namespace Mercadono
                 this.button1.Size = new Size(150, 40);
                 this.button1.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
                 this.button1.Location = new Point(20, this.ClientSize.Height - 60);
-
-                // Remover eventos antigos
                 this.button1.Click -= button1_Click;
                 this.button1.Click += button1_Click;
             }
 
-            // Criar Label de Total
-            lblTotal = new Label
-            {
-                Name = "lblTotal",
-                Text = "Total: R$ 0,00",
-                Location = new Point(20, this.ClientSize.Height - 110),
-                Size = new Size(400, 30),
-                Font = new Font("Arial", 12, FontStyle.Bold),
-                ForeColor = Color.DarkGreen,
-                Anchor = AnchorStyles.Bottom | AnchorStyles.Left
-            };
-            this.Controls.Add(lblTotal);
-
-            // Evento de redimensionamento
             this.Resize += (s, e) => {
                 if (this.button1 != null)
                     this.button1.Location = new Point(20, this.ClientSize.Height - 60);
-
                 if (lblTotal != null)
                     lblTotal.Location = new Point(20, this.ClientSize.Height - 110);
-
                 if (panelProdutos != null)
                     panelProdutos.Size = new Size(this.ClientSize.Width - 20, this.ClientSize.Height - 150);
             };
@@ -93,20 +82,11 @@ namespace Mercadono
 
         private void CarregarProdutos()
         {
-            // Evitar carregamento simultâneo
-            if (isLoading) return;
-
             try
             {
-                isLoading = true;
-
-                // LIMPAR COMPLETAMENTE O PANEL
                 if (panelProdutos != null)
                 {
-                    // Remover todos os controles
                     panelProdutos.Controls.Clear();
-
-                    // Forçar garbage collection
                     panelProdutos.Refresh();
                 }
 
@@ -123,7 +103,6 @@ namespace Mercadono
                 int y = 10;
                 const int x = 10;
 
-                // Adicionar os produtos
                 foreach (DataRow row in dt.Rows)
                 {
                     int idProduto = Convert.ToInt32(row["idproduto"]);
@@ -134,7 +113,7 @@ namespace Mercadono
 
                     CheckBox chk = new CheckBox
                     {
-                        Name = $"chk{idProduto}_{Guid.NewGuid()}", // Nome único para evitar conflitos
+                        Name = $"chk{idProduto}",
                         Text = $"{idProduto} - {nome} | Preço: {preco:C2} | Desconto: {desconto}% | Estoque: {estoque}",
                         Location = new Point(x, y),
                         Width = Math.Max(600, panelProdutos.Width - 30),
@@ -146,6 +125,7 @@ namespace Mercadono
                         Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right
                     };
 
+                    chk.CheckedChanged -= Chk_CheckedChanged;
                     chk.CheckedChanged += Chk_CheckedChanged;
 
                     if (estoque == 0)
@@ -158,23 +138,16 @@ namespace Mercadono
                     y += 35;
                 }
 
-                // Garantir que os controles estejam visíveis
                 panelProdutos.BringToFront();
                 this.button1?.BringToFront();
                 lblTotal.BringToFront();
 
                 this.ResumeLayout();
-
-                // Atualizar total
                 AtualizarTotal();
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Erro ao carregar produtos: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            finally
-            {
-                isLoading = false;
             }
         }
 
@@ -302,11 +275,9 @@ namespace Mercadono
                 {
                     MessageBox.Show("COMPRA REALIZADA COM SUCESSO!", "SUCESSO", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                    // Limpar checkboxes
                     foreach (CheckBox chk in panelProdutos.Controls.OfType<CheckBox>().ToList())
                         chk.Checked = false;
 
-                    // Recarregar produtos
                     CarregarProdutos();
                 }
             }
@@ -435,9 +406,16 @@ namespace Mercadono
             }
         }
 
-        private void pictureBox3_Click(object sender, EventArgs e)
-        {
-
-        }
+        // Stubs do Designer
+        private void pictureBox3_Click(object sender, EventArgs e) { }
+        private void pictureBox1_Click(object sender, EventArgs e) { }
+        private void pictureBox2_Click(object sender, EventArgs e) { }
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e) { }
+        private void button2_Click(object sender, EventArgs e) { }
+        private void textBox2_TextChanged(object sender, EventArgs e) { }
+        private void textBox1_TextChanged(object sender, EventArgs e) { }
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) { }
+        private void checkBox1_CheckedChanged(object sender, EventArgs e) { }
+        private void interface_principal_Load(object sender, EventArgs e) { }
     }
 }
