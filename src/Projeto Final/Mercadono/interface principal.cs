@@ -12,63 +12,102 @@ namespace Mercadono
     {
         private readonly string connectionString = @"Server=(localdb)\MSSQLLocalDB;Database=mercadono;Integrated Security=True;";
         private Label lblTotal;
+        private Panel panelProdutos;
+        private bool isLoading = false; // Flag para evitar carregamento duplicado
+        private bool isFirstLoad = true;
 
         public interface_principal()
         {
             InitializeComponent();
 
-            // Ensure background picture is behind dynamic controls
-            try { this.pictureBox1?.SendToBack(); } catch { }
+            // Configurar o formulário
+        }
 
-            // Wire existing button1 as "Comprar" defensively (unsubscribe then subscribe)
+        private void interface_principal_Load(object sender, EventArgs e)
+        {
+            // Garantir que só carregue uma vez
+            if (isFirstLoad)
+            {
+                isFirstLoad = false;
+
+                // Criar o panel e carregar produtos
+                InicializarControles();
+                CarregarProdutos();
+            }
+        }
+
+        private void InicializarControles()
+        {
+            // Criar Panel para produtos
+            panelProdutos = new Panel
+            {
+                Name = "panelProdutos",
+                Location = new Point(10, 10),
+                Size = new Size(this.ClientSize.Width - 20, this.ClientSize.Height - 150),
+                AutoScroll = true,
+                Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right,
+                BackColor = Color.Transparent
+            };
+            this.Controls.Add(panelProdutos);
+
+            // Configurar botão
             if (this.button1 != null)
             {
                 this.button1.Text = "COMPRAR";
                 this.button1.BackColor = Color.LightGreen;
                 this.button1.Font = new Font("Arial", 12, FontStyle.Bold);
                 this.button1.Size = new Size(150, 40);
-
-                // BOTÃO NO CANTO INFERIOR ESQUERDO
                 this.button1.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
                 this.button1.Location = new Point(20, this.ClientSize.Height - 60);
 
-                // Prevent duplicate subscriptions which cause duplicated behavior/errors
+                // Remover eventos antigos
                 this.button1.Click -= button1_Click;
                 this.button1.Click += button1_Click;
             }
 
-            // Ajustar o formulário para redimensionar
+            // Criar Label de Total
+            lblTotal = new Label
+            {
+                Name = "lblTotal",
+                Text = "Total: R$ 0,00",
+                Location = new Point(20, this.ClientSize.Height - 110),
+                Size = new Size(400, 30),
+                Font = new Font("Arial", 12, FontStyle.Bold),
+                ForeColor = Color.DarkGreen,
+                Anchor = AnchorStyles.Bottom | AnchorStyles.Left
+            };
+            this.Controls.Add(lblTotal);
+
+            // Evento de redimensionamento
             this.Resize += (s, e) => {
                 if (this.button1 != null)
-                {
                     this.button1.Location = new Point(20, this.ClientSize.Height - 60);
-                }
-                if (lblTotal != null)
-                {
-                    lblTotal.Location = new Point(20, this.ClientSize.Height - 110);
-                }
-            };
 
-            // Call CarregarProdutos once now (avoid attaching multiple Load handlers)
-            CarregarProdutos();
+                if (lblTotal != null)
+                    lblTotal.Location = new Point(20, this.ClientSize.Height - 110);
+
+                if (panelProdutos != null)
+                    panelProdutos.Size = new Size(this.ClientSize.Width - 20, this.ClientSize.Height - 150);
+            };
         }
 
         private void CarregarProdutos()
         {
+            // Evitar carregamento simultâneo
+            if (isLoading) return;
+
             try
             {
-                // Remove previous dynamic checkboxes and previous lblTotal if present
-                for (int i = this.Controls.Count - 1; i >= 0; i--)
+                isLoading = true;
+
+                // LIMPAR COMPLETAMENTE O PANEL
+                if (panelProdutos != null)
                 {
-                    var c = this.Controls[i];
-                    if (c is CheckBox chk && chk.Name.StartsWith("chk"))
-                    {
-                        this.Controls.RemoveAt(i);
-                    }
-                    else if (c is Label lbl && lbl.Name == "lblTotal")
-                    {
-                        this.Controls.RemoveAt(i);
-                    }
+                    // Remover todos os controles
+                    panelProdutos.Controls.Clear();
+
+                    // Forçar garbage collection
+                    panelProdutos.Refresh();
                 }
 
                 DataTable dt = BuscarProdutosEmEstoque();
@@ -81,9 +120,10 @@ namespace Mercadono
 
                 this.SuspendLayout();
 
-                int y = 50;
-                const int x = 20;
+                int y = 10;
+                const int x = 10;
 
+                // Adicionar os produtos
                 foreach (DataRow row in dt.Rows)
                 {
                     int idProduto = Convert.ToInt32(row["idproduto"]);
@@ -94,14 +134,18 @@ namespace Mercadono
 
                     CheckBox chk = new CheckBox
                     {
-                        Name = $"chk{idProduto}",
+                        Name = $"chk{idProduto}_{Guid.NewGuid()}", // Nome único para evitar conflitos
                         Text = $"{idProduto} - {nome} | Preço: {preco:C2} | Desconto: {desconto}% | Estoque: {estoque}",
                         Location = new Point(x, y),
-                        Size = new Size(Math.Max(700, this.ClientSize.Width - 40), 30),
+                        Width = Math.Max(600, panelProdutos.Width - 30),
+                        Height = 30,
                         Font = new Font("Arial", 10),
                         Tag = row,
-                        AutoSize = false
+                        AutoSize = false,
+                        BackColor = Color.Transparent,
+                        Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right
                     };
+
                     chk.CheckedChanged += Chk_CheckedChanged;
 
                     if (estoque == 0)
@@ -110,30 +154,58 @@ namespace Mercadono
                         chk.Text += " (SEM ESTOQUE)";
                     }
 
-                    this.Controls.Add(chk);
+                    panelProdutos.Controls.Add(chk);
                     y += 35;
                 }
 
-                // Label do total (posicionado acima do botão)
-                lblTotal = new Label
-                {
-                    Name = "lblTotal",
-                    Text = "Total: R$ 0,00",
-                    Location = new Point(20, this.ClientSize.Height - 110),
-                    Size = new Size(400, 30),
-                    Font = new Font("Arial", 12, FontStyle.Bold),
-                    ForeColor = Color.DarkGreen,
-                    Anchor = AnchorStyles.Bottom | AnchorStyles.Left
-                };
-                this.Controls.Add(lblTotal);
+                // Garantir que os controles estejam visíveis
+                panelProdutos.BringToFront();
+                this.button1?.BringToFront();
+                lblTotal.BringToFront();
 
-                TryBringDynamicControlsToFront();
                 this.ResumeLayout();
+
+                // Atualizar total
+                AtualizarTotal();
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Erro ao carregar produtos: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            finally
+            {
+                isLoading = false;
+            }
+        }
+
+        private void AtualizarTotal()
+        {
+            try
+            {
+                decimal total = 0;
+                int count = 0;
+
+                if (panelProdutos != null)
+                {
+                    foreach (Control ctrl in panelProdutos.Controls)
+                    {
+                        if (ctrl is CheckBox chk && chk.Checked && chk.Tag is DataRow row)
+                        {
+                            decimal preco = ParseDecimalSafe(row["Preço"]);
+                            decimal desconto = ParseDecimalSafe(row["Desconto"]);
+                            decimal precoComDesconto = preco * (1 - desconto / 100m);
+                            total += precoComDesconto;
+                            count++;
+                        }
+                    }
+                }
+
+                if (lblTotal != null)
+                {
+                    lblTotal.Text = $"Total: {total:C2} | Itens: {count}";
+                }
+            }
+            catch { }
         }
 
         private static decimal ParseDecimalSafe(object value)
@@ -149,41 +221,7 @@ namespace Mercadono
 
         private void Chk_CheckedChanged(object sender, EventArgs e)
         {
-            try
-            {
-                decimal total = 0;
-                int count = 0;
-
-                foreach (Control ctrl in this.Controls)
-                {
-                    if (ctrl is CheckBox chk && chk.Checked && chk.Tag is DataRow row)
-                    {
-                        decimal preco = ParseDecimalSafe(row["Preço"]);
-                        decimal desconto = ParseDecimalSafe(row["Desconto"]);
-                        decimal precoComDesconto = preco * (1 - desconto / 100m);
-                        total += precoComDesconto;
-                        count++;
-                    }
-                }
-
-                if (lblTotal != null)
-                {
-                    lblTotal.Text = $"Total: {total:C2} | Itens: {count}";
-                }
-            }
-            catch { }
-        }
-
-        private void TryBringDynamicControlsToFront()
-        {
-            try
-            {
-                lblTotal?.BringToFront();
-                foreach (var chk in this.Controls.OfType<CheckBox>().Where(c => c.Name.StartsWith("chk")))
-                    chk.BringToFront();
-                this.button1?.BringToFront();
-            }
-            catch { }
+            AtualizarTotal();
         }
 
         // ============================================================
@@ -191,8 +229,6 @@ namespace Mercadono
         // ============================================================
         private void button1_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("BOTÃO FUNCIONANDO!", "TESTE", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
             try
             {
                 int idCliente = 0;
@@ -204,7 +240,7 @@ namespace Mercadono
                     return;
                 }
 
-                var selecionados = this.Controls
+                var selecionados = panelProdutos.Controls
                     .OfType<CheckBox>()
                     .Where(chk => chk.Checked && chk.Tag is DataRow)
                     .Select(chk => (Check: chk, Row: (DataRow)chk.Tag))
@@ -266,9 +302,11 @@ namespace Mercadono
                 {
                     MessageBox.Show("COMPRA REALIZADA COM SUCESSO!", "SUCESSO", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                    foreach (var chk in this.Controls.OfType<CheckBox>().Where(c => c.Name.StartsWith("chk")).ToList())
+                    // Limpar checkboxes
+                    foreach (CheckBox chk in panelProdutos.Controls.OfType<CheckBox>().ToList())
                         chk.Checked = false;
 
+                    // Recarregar produtos
                     CarregarProdutos();
                 }
             }
