@@ -13,18 +13,18 @@ Mercadono/
 ├── Program.cs                    # Ponto de entrada da aplicação
 ├── Session.cs                    # Gestão de sessão do utilizador
 │
-├── 📱 FORMS PRINCIPAIS
+├──   FORMS PRINCIPAIS
 │   ├── Form1.cs                  # Registo de novos utilizadores
 │   ├── Login.cs                  # Autenticação de utilizadores
 │   ├── interface_principal.cs    # Interface principal do utilizador
 │   └── Form2.cs                  # Painel do Administrador (Gestão de Produtos)
 │
-├── 📊 FORMS DE GESTÃO
+├──   FORMS DE GESTÃO
 │   ├── compras.cs                # Gestão de Compras
 │   ├── estoque.cs                # Gestão de Estoque
 │   └── utilizadores.cs           # Gestão de Utilizadores
 │
-└── 🗄️ BANCO DE DADOS (SQL Server LocalDB)
+└──   BANCO DE DADOS (SQL Server LocalDB)
     ├── utilizadorTbl             # Utilizadores (clientes e admin)
     ├── ProdutoTbl                # Produtos
     ├── estoqueTbl                # Estoque
@@ -33,7 +33,7 @@ Mercadono/
 
 ---
 
-## 🔐 . SESSION.CS
+##   . SESSION.CS
 
 **Classe estática para armazenar os dados do utilizador logado.**
 
@@ -56,12 +56,12 @@ public static class Session
 **Formulário de autenticação de utilizadores.**
 
 ### Funcionalidades:
-- ✅ Login com email e senha
-- ✅ Verificação de administrador (`admin@admin.com` / `admin123`)
-- ✅ Redirecionamento para:
+-  Login com email e senha
+-  Verificação de administrador (`admin@admin.com` / `admin123`)
+-  Redirecionamento para:
   - `Form2` (se for administrador)
   - `interface_principal` (se for utilizador normal)
-- ✅ Link para registo (`Form1`)
+-  Link para registo (`Form1`)
 
 ### Principais Métodos:
 | Método | Descrição |
@@ -76,11 +76,11 @@ public static class Session
 **Formulário de registo de novos utilizadores.**
 
 ### Funcionalidades:
-- ✅ Validação de campos (nome, email, senha)
-- ✅ Verificação de email duplicado
-- ✅ Criação de conta na base de dados
-- ✅ Redirecionamento para a interface principal após registo
-- ✅ Verificação de administrador (se for `admin@admin.com`)
+-  Validação de campos (nome, email, senha)
+-  Verificação de email duplicado
+-  Criação de conta na base de dados
+-  Redirecionamento para a interface principal após registo
+-  Verificação de administrador (se for `admin@admin.com`)
 
 ### Validações:
 | Campo | Regra |
@@ -96,11 +96,11 @@ public static class Session
 **Interface principal do utilizador comum.**
 
 ### Funcionalidades:
-- ✅ Lista de produtos disponíveis com CheckBox
-- ✅ Cálculo automático do total
-- ✅ Compra de produtos selecionados
-- ✅ Atualização automática do estoque
-- ✅ Navegação entre forms
+-  Lista de produtos disponíveis com CheckBox
+-  Cálculo automático do total
+-  Compra de produtos selecionados
+-  Atualização automática do estoque
+-  Navegação entre forms
 
 ### Botões de Navegação:
 | Botão | Destino |
@@ -118,10 +118,10 @@ public static class Session
 **Painel do Administrador para gestão de produtos.**
 
 ### Funcionalidades:
-- ✅ Lista de produtos (ID, Nome, Preço, Desconto, Quantidade)
-- ✅ Visualização de detalhes ao clicar
-- ✅ Atualização de produtos (button1)
-- ✅ Navegação entre forms
+-  Lista de produtos (ID, Nome, Preço, Desconto, Quantidade)
+-  Visualização de detalhes ao clicar
+-  Atualização de produtos (button1)
+-  Navegação entre forms
 
 ### Base de Dados:
 | Tabela | Colunas |
@@ -135,10 +135,10 @@ public static class Session
 **Gestão de compras realizadas.**
 
 ### Funcionalidades:
-- ✅ Lista de compras (ID, Cliente, Produto, Qtd, Valor Total, Data)
-- ✅ Visualização de detalhes ao clicar
-- ✅ Atualização da lista (button2)
-- ✅ Navegação entre forms
+-  Lista de compras (ID, Cliente, Produto, Qtd, Valor Total, Data)
+-  Visualização de detalhes ao clicar
+-  Atualização da lista (button2)
+-  Navegação entre forms
 
 ### Base de Dados:
 | Tabelas | Relação |
@@ -154,10 +154,10 @@ public static class Session
 **Gestão do estoque de produtos.**
 
 ### Funcionalidades:
-- ✅ Lista de estoque (ID, Produto, Quantidade)
-- ✅ Visualização de detalhes ao clicar
-- ✅ Atualização do estoque (button3)
-- ✅ Navegação entre forms
+-  Lista de estoque (ID, Produto, Quantidade)
+-  Visualização de detalhes ao clicar
+-  Atualização do estoque (button3)
+-  Navegação entre forms
 
 ### Base de Dados:
 | Tabelas | Relação |
@@ -282,11 +282,11 @@ utilizadorTbl (1) ────── (N) compraTbl
 
 | Componente | Estado |
 |------------|--------|
-| Login | ✅ Completo |
-| Registo | ✅ Completo |
-| Interface Principal | ✅ Completo |
-| Gestão de Produtos | ✅ Completo |
-| Gestão de Compras | ✅ Completo |
-| Gestão de Estoque | ✅ Completo |
-| Gestão de Utilizadores | ⚠️ Pendente |
-| Base de Dados | ✅ Completa |
+| Login   |  Completo |
+| Registo | Completo |
+| Interface Principal|Completo |
+| Gestão de Produtos | Completo |
+| Gestão de Compras |  Completo |
+| Gestão de Estoque |  Completo |
+| Gestão de Utilizadores |  Pendente |
+| Base de Dados |  Completa |
